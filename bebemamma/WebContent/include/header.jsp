@@ -1,10 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <style>
 	@import url('https://fonts.googleapis.com/css?family=Roboto');
 	
-	/*body 초기화*/
+	/*body*/
 	body {
 		margin: 0;
 		padding: 0;
@@ -89,7 +90,7 @@
 	}
 </style>
 
-<title>베베맘마</title>
+<title>베베맘마</title>
 </head>
 
 <body>
@@ -102,21 +103,21 @@
 	<nav role="navigation">
 		<ul id="main-menu">
 			<li><a href="#">서비스안내</a></li>
-			<li><a href="#">우리 아기 이유식</a>
-				<ul id="sub-menu">
-					<li><a href="#" aria-label="subemnu">연령대별 이유식 정보</a></li>
-					<li><a href="#" aria-label="subemnu">부족 영양소 분석</a></li>
-					<li><a href="#" aria-label="subemnu">전체 영양소 정보</a></li>
-				</ul></li>
-			<li><a href="#">유아식품, 분유</a>
+			<li><a href="#">우리 아기 이유식</a>
 				<ul id="sub-menu">
 					<li><a href="#" aria-label="subemnu">submenu</a></li>
+					<li><a href="#" aria-label="subemnu">submenu</a></li>
+					<li><a href="#" aria-label="subemnu">submenu</a></li>
+				</ul></li>
+			<li><a href="#">유아식품,분유</a>
+				<ul id="sub-menu">
+					<li><a href="#" aria-label="subemnu">submenu</a></li>
 					<li><a href="#" aria-label="subemnu">submenu</a></li>
 					<li><a href="#" aria-label="subemnu">submenu</a></li>
 					<li><a href="#" aria-label="subemnu">submenu</a></li>
 				</ul></li>
-			<li><a href="../mypage/mypage.jsp">마이페이지</a>
-			<li><a href="../qna/qna.jsp">베베맘마톡톡</a></li>
+			<li><a href="../mypage/mypage.jsp">마이 페이지</a>
+			<li><a href="../qna/qna.jsp">베베맘마 톡톡</a></li>
 		</ul>
 	</nav>
 

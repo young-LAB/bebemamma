@@ -1,6 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <title></title>
   <style media="screen">
   @import url('https://fonts.googleapis.com/css?family=Roboto');
@@ -25,7 +26,7 @@
 
 <body>
   <div id=foot>
-    Copyrightⓒ 2019. BebeMamma. All rights reserved.
+    Copyright 2019. BebeMamma. All rights reserved.
   </div>
 </body>
 

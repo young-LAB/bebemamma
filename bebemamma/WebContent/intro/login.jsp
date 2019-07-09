@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,7 +16,7 @@
         <input type="text" id="loginId" name="loginId" placeholder="username">
         <input type="password" id="loginPw" name="password" placeholder="password">
       </div>
-      <button type="submit">·Î±×ÀÎ</button>
+      <button type="submit">ë¡œê·¸ì¸</button>
     </div>
     <div id="signup">
       <p>Not registered?<a href="./signup.jsp">Create an account</a></p>
