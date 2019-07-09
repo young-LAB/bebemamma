@@ -11,13 +11,12 @@
 <body>
 <%@include file="../include/header.jsp"%>
 
-  <form method="post" id="LoginForm" action="#">
+  <form method="post" id="LoginForm" action="login_action.jsp">
       <div>
         <input type="text" id="loginId" name="loginId" placeholder="username">
-        <input type="password" id="loginPw" name="password" placeholder="password">
+        <input type="password" id="loginPw" name="loginPw" placeholder="password">
       </div>
       <button type="submit">로그인</button>
-    </div>
     <div id="signup">
       <p>Not registered?<a href="./signup.jsp">Create an account</a></p>
     </div>
