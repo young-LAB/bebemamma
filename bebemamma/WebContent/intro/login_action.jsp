@@ -19,7 +19,9 @@
 		int result = userDAO.login(id, pw);
 		//로그인 성공
 		if(result==1){
-			response.sendRedirect("../main/main.jsp?id="+id+"&pw="+pw);
+			session.setAttribute("id", id);
+			session.setAttribute("pw", pw);
+			response.sendRedirect("../main/main.jsp");
 		}
 		//로그인 실패
 		else if(result == 0){
