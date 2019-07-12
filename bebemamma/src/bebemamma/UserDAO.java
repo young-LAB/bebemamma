@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
  
 public class UserDAO {
     private Connection conn;   //데이터베이스에 접근하기 위한 객체
@@ -17,7 +16,7 @@ public class UserDAO {
         	Class.forName("com.mysql.cj.jdbc.Driver");
             String dbURL="jdbc:mysql://localhost:3306/bebemamma?serverTimezone=UTC";                             
             String dbID="root";// mysql 아이디 
-            String dbPassword="0000";// mysql 비밀번호
+            String dbPassword="tnqls123";// mysql 비밀번호
             
             conn=DriverManager.getConnection(dbURL, dbID, dbPassword);
         }
