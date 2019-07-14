@@ -27,7 +27,7 @@ public class UserDAO {
     }
     
     public int login(String userID, String userPassword) {
-		String SQL = "SELECT pw FROM user WHERE id = ?";
+		String SQL = "SELECT password FROM meminfo WHERE mem_id = ?";
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, userID);
@@ -48,14 +48,19 @@ public class UserDAO {
 	}  
     
     public int join(User user) {
-        String SQL= "INSERT INTO USER VALUES(?, ?, ?, ?, ?) ";
+        String SQL= "INSERT INTO MEMINFO VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
         try {
             pstmt = conn.prepareStatement(SQL);
-            pstmt.setString(1,user.getUserName());
+            pstmt.setString(1,user.getUserNum());
             pstmt.setString(2,user.getUserID());
             pstmt.setString(3,user.getUserPassword());
-            pstmt.setString(4,user.getUserEmail());
-            pstmt.setString(5,user.getUserGender());
+            pstmt.setString(4,user.getUserHeight());
+            pstmt.setString(5,user.getUserWeight());
+            pstmt.setString(6,user.getUserMonth());
+            pstmt.setString(7,user.getUserSkin());
+            pstmt.setString(8,user.getUserAllergy());
+            pstmt.setString(9,user.getUserEtc());
+            pstmt.setString(10,user.getUserName());
             return pstmt.executeUpdate();
         }
         catch(Exception e) {

@@ -1,11 +1,23 @@
 package bebemamma;
 
 public class User {
+	private String userNum;
 	private String userID;
     private String userPassword;
+    private String userHeight;
+    private String userWeight;
+    private String userMonth;
+    private String userSkin;
+    private String userAllergy;
+    private String userEtc;
     private String userName;
-    private String userGender;
-    private String userEmail;
+    
+    public String getUserNum() {
+        return userNum;
+    }
+    public void setUserNum(String userNum) {
+        this.userNum = userNum;
+    }
     
     public String getUserID() {
         return userID;
@@ -21,24 +33,52 @@ public class User {
         this.userPassword = userPassword;
     }
     
+    public String getUserHeight() {
+        return userHeight;
+    }
+    public void setUserHeight(String userHeight) {
+        this.userHeight = userHeight;
+    }
+    
+    public String getUserWeight() {
+        return userWeight;
+    }
+    public void setUserWeight(String userWeight) {
+        this.userWeight = userWeight; 
+    }
+    
+    public String getUserMonth() {
+        return userMonth;
+    }
+    public void setUserMonth(String userMonth) {
+        this.userMonth = userMonth;
+    }
+    
+    public String getUserSkin() {
+        return userSkin;
+    }
+    public void setUserSkin(String userSkin) {
+        this.userSkin = userSkin;
+    }
+    
+    public String getUserAllergy() {
+        return userAllergy;
+    }
+    public void setUserAllergy(String userAllergy) {
+        this.userAllergy = userAllergy;
+    }
+    
+    public String getUserEtc() {
+        return userEtc;
+    }
+    public void setUserEtc(String userEtc) {
+        this.userEtc = userEtc;
+    }
+    
     public String getUserName() {
         return userName;
     }
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-    
-    public String getUserGender() {
-        return userGender;
-    }
-    public void setUserGender(String userGender) {
-        this.userGender = userGender; 
-    }
-    
-    public String getUserEmail() {
-        return userEmail;
-    }
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
     }
 }
