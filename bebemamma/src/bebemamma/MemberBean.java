@@ -9,7 +9,7 @@ public class MemberBean{
 	private float height;
 	private float weight;
 	private String allergy[];
-	private String history[];
+	private int skin;
 	
 	public String getId() {
 		return id;
@@ -73,10 +73,10 @@ public class MemberBean{
 	public void setAllergy(String[] allergy) {
 		this.allergy = allergy;
 	}
-	public String[] gethistory() {
-		return history;
+	public int getSkin() {
+		return skin;
 	}
-	public void setHistory(String[] history) {
-		this.history = history;
+	public void setSkin(int skin) {
+		this.skin = skin;
 	}
 }

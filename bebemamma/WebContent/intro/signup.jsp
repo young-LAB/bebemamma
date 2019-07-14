@@ -32,10 +32,10 @@
       <p>비밀번호 : <input class="tx" type="password" name="pwd" placeholder="비밀번호 입력" /></p>
       <p>비밀번호 확인 : <input class="tx" type="password" name="repwd" placeholder="비밀번호 확인" /></p>
       <p>이름 : <input class="tx" type="text" name="name" placeholder="이름 입력" /></p>
-      <p>현재 아이의 연령대는? <input class="tx" type="number" name="age" placeholder="나이 입력" />
+      <p>현재 아이의 연령대는? <input class="tx" type="number" name="age" placeholder="나이 입력" />(개월)
       </p>
       <p> 아이의 성별은? <br>
-        <input class="rd" type="radio" name="gender" value="남" />남자
+        <input class="rd" type="radio" name="gender" value="남" checked="checked" />남자
         <input class="rd" type="radio" name="gender" value="여" />여자
       </p>
 
@@ -43,12 +43,9 @@
         <input class="tx"type="text" name="height" placeholder="키 입력" />cm
       <input class="tx" type="text" name="weight" placeholder="몸무게 입력" />kg</p>
 
-      <p>아이의 가족력에 대해 체크해주세요.<br>
-        <input class="ch" type="checkbox" name="history" value="고혈압" />고혈압
-        <input class="ch" type="checkbox" name="history" value="아토피" />아토피
-        <input class="ch" type="checkbox" name="history" value="당뇨병" />당뇨병
-        <input class="ch" type="checkbox" name="history" value="심장병" />심장병
-        <input class="ch" type="checkbox" name="history" value="뇌질환" />뇌질환
+      <p>아이의 아토피 유무를 체크해주세요.<br>
+        <input class="rd" type="radio" name="skin" value=0 checked="checked" />무
+        <input class="rd" type="radio" name="skin" value=1 />유
       </p>
 
       <p>아이가 가지고 있는 알레르기에 대해 체크해주세요.<br>

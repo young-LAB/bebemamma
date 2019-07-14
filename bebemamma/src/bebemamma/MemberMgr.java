@@ -51,19 +51,20 @@ public class MemberMgr {
 	//	Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
+		PreparedStatement num;
 		boolean flag = false;
 		try {
 		//	con = pool.getConnection();
-			sql = "insert into meminfo(mem_id, password, name, height, weight, month, mem_num)values(?,?,?,?,?,?,?)";
+			sql = "insert into meminfo(mem_num, mem_id, password, name, height, weight, month, skinproblem)values(?,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, bean.getId());
-			pstmt.setString(2, bean.getPwd());
-			pstmt.setString(3, bean.getName());
-			pstmt.setFloat(4, bean.getHeight());
-			pstmt.setFloat(5, bean.getWeight());
-			pstmt.setInt(6, bean.getAge());
-			pstmt.setInt(7, 12);
-			
+			pstmt.setInt(1,12);   //어떻게 해야할지 모르겠음.
+			pstmt.setString(2, bean.getId());
+			pstmt.setString(3, bean.getPwd());
+			pstmt.setString(4, bean.getName());
+			pstmt.setFloat(5, bean.getHeight());
+			pstmt.setFloat(6, bean.getWeight());
+			pstmt.setInt(7, bean.getAge());
+			pstmt.setInt(8, bean.getSkin());
 			if(pstmt.executeUpdate() == 1){
 				flag = true;
 			}
