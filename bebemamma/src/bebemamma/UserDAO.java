@@ -16,7 +16,7 @@ public class UserDAO {
         	Class.forName("com.mysql.cj.jdbc.Driver");
             String dbURL="jdbc:mysql://localhost:3306/bebemamma?serverTimezone=UTC";                             
             String dbID="root";// mysql 아이디 
-            String dbPassword="tnqls123";// mysql 비밀번호
+            String dbPassword="0000";// mysql 비밀번호
             
             conn=DriverManager.getConnection(dbURL, dbID, dbPassword);
         }
@@ -47,19 +47,17 @@ public class UserDAO {
 	}  
     
     public int join(User user) {
-        String SQL= "INSERT INTO MEMINFO VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+        String SQL= "INSERT INTO MEMINFO VALUES(?, ?, ?, ?, ?, ?, ?, ?) ";
         try {
             pstmt = conn.prepareStatement(SQL);
-            pstmt.setString(1,user.getUserNum());
-            pstmt.setString(2,user.getUserID());
-            pstmt.setString(3,user.getUserPassword());
-            pstmt.setString(4,user.getUserHeight());
-            pstmt.setString(5,user.getUserWeight());
-            pstmt.setString(6,user.getUserMonth());
-            pstmt.setString(7,user.getUserSkin());
-            pstmt.setString(8,user.getUserAllergy());
-            pstmt.setString(9,user.getUserEtc());
-            pstmt.setString(10,user.getUserName());
+            pstmt.setString(1,user.getUserID());
+            pstmt.setString(2,user.getUserPassword());
+            pstmt.setString(3,user.getUserHeight());
+            pstmt.setString(4,user.getUserWeight());
+            pstmt.setString(5,user.getUserMonth());
+            pstmt.setString(6,user.getUserSkin());
+            pstmt.setString(7,user.getUserAllergy());
+            pstmt.setString(8,user.getUserName());
             return pstmt.executeUpdate();
         }
         catch(Exception e) {

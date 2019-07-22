@@ -1,7 +1,6 @@
 package bebemamma;
 
 public class User {
-	private String userNum;
 	private String userID;
     private String userPassword;
     private String userHeight;
@@ -9,15 +8,8 @@ public class User {
     private String userMonth;
     private String userSkin;
     private String userAllergy;
-    private String userEtc;
     private String userName;
-    
-    public String getUserNum() {
-        return userNum;
-    }
-    public void setUserNum(String userNum) {
-        this.userNum = userNum;
-    }
+ 
     
     public String getUserID() {
         return userID;
@@ -66,13 +58,6 @@ public class User {
     }
     public void setUserAllergy(String userAllergy) {
         this.userAllergy = userAllergy;
-    }
-    
-    public String getUserEtc() {
-        return userEtc;
-    }
-    public void setUserEtc(String userEtc) {
-        this.userEtc = userEtc;
     }
     
     public String getUserName() {

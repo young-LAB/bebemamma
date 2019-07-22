@@ -92,7 +92,7 @@
 
 <title>베베맘마</title>
 </head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <body>
 
 	<h1>
@@ -109,10 +109,10 @@
 					<li><a href="#" aria-label="subemnu">submenu</a></li>
 					<li><a href="#" aria-label="subemnu">submenu</a></li>
 				</ul></li>
-			<li><a href="#">유아식품,분유</a>
+			<li><a href="../milkrec/rec.jsp">유아식품,분유</a>
 				<ul id="sub-menu">
-					<li><a href="#" aria-label="subemnu">submenu</a></li>
-					<li><a href="#" aria-label="subemnu">submenu</a></li>
+					<li><a href="../milkrec/rec.jsp" aria-label="분유 추천">submenu</a></li>
+					<li><a href="../milkrec/search.jsp" aria-label="분유 검색">submenu</a></li>
 					<li><a href="#" aria-label="subemnu">submenu</a></li>
 					<li><a href="#" aria-label="subemnu">submenu</a></li>
 				</ul></li>

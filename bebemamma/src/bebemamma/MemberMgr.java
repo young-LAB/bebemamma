@@ -17,7 +17,7 @@ public class MemberMgr {
         	Class.forName("com.mysql.cj.jdbc.Driver");
             String dbURL="jdbc:mysql://localhost:3306/bebemamma?serverTimezone=UTC";                             
             String dbID="root";// mysql 아이디 
-            String dbPassword="tnqls123";// mysql 비밀번호
+            String dbPassword="0000";// mysql 비밀번호
             
             conn=DriverManager.getConnection(dbURL, dbID, dbPassword);
         }
@@ -34,7 +34,7 @@ public class MemberMgr {
 		boolean flag = false;
 		try {
 		//	con = pool.getConnection();
-			sql = "select id from meminfo where id = ?";
+			sql = "select mem_id from meminfo where mem_id = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			flag = pstmt.executeQuery().next();
@@ -55,12 +55,12 @@ public class MemberMgr {
 		boolean flag = false;
 		try {
 		//	con = pool.getConnection();
-			sql = "insert into meminfo(mem_num, mem_id, password, name, height, weight, month, skinproblem)values(?,?,?,?,?,?,?,?)";
+			sql = "insert into meminfo(mem_id, password, mem_name, mem_gender, baby_height, baby_weight, baby_month, skinproblem)values(?,?,?,?, ?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1,12);   //어떻게 해야할지 모르겠음.
-			pstmt.setString(2, bean.getId());
-			pstmt.setString(3, bean.getPwd());
-			pstmt.setString(4, bean.getName());
+			pstmt.setString(1, bean.getId());
+			pstmt.setString(2, bean.getPwd());
+			pstmt.setString(3, bean.getName());
+			pstmt.setString(4, bean.getGender());
 			pstmt.setFloat(5, bean.getHeight());
 			pstmt.setFloat(6, bean.getWeight());
 			pstmt.setInt(7, bean.getAge());
