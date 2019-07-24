@@ -31,12 +31,21 @@
       <input type="button" value="ID중복확인" onClick="idCheck(this.form.id.value)">
       <p>비밀번호 : <input class="tx" type="password" name="pwd" placeholder="비밀번호 입력" /></p>
       <p>비밀번호 확인 : <input class="tx" type="password" name="repwd" placeholder="비밀번호 확인" /></p>
-      <p>이름 : <input class="tx" type="text" name="name" placeholder="이름 입력" /></p>
-      <p>현재 아이의 연령대는? <input class="tx" type="number" name="age" placeholder="나이 입력" />(개월)
+      <p>회원이름 : <input class="tx" type="text" name="mem_name" placeholder="본인 이름 입력" /></p>
+
+      <p> 회원의 성별은? <br>
+        <input class="rd" type="radio" name="mem_gender" value="M" checked="checked" />남자
+        <input class="rd" type="radio" name="mem_gender" value="W" />여자
       </p>
+      
+      <p>아이이름 : <input class="tx" type="text" name="baby_name" placeholder="아이 이름 입력" /></p>
+     
       <p> 아이의 성별은? <br>
-        <input class="rd" type="radio" name="gender" value="남" checked="checked" />남자
-        <input class="rd" type="radio" name="gender" value="여" />여자
+        <input class="rd" type="radio" name="baby_gender" value="M" checked="checked" />남자
+        <input class="rd" type="radio" name="baby_gender" value="W" />여자
+      </p>
+      
+      <p>현재 아이의 연령대는? <input class="tx" type="number" name="age" placeholder="나이 입력" />(개월)
       </p>
 
       <p>현재 아이의 키, 몸무게를 입력해주세요. (카우프 지수 측정용)<br>
@@ -54,7 +63,7 @@
         <input class="ch" type="checkbox" name="allergy" value="복숭아" />복숭아
         <input class="ch" type="checkbox" name="allergy" value="갑각류" />갑각류
         <input class="ch" type="checkbox" name="allergy" value="우유" />우유 
-        <input class="ch" type="checkbox" name="allergy" value="기타" />기타 <input class="tx" type="text" name="allergy" placeholder="알레르기를 입력해주세요." />
+       <!-- <input class="ch" type="checkbox" name="allergy" value="기타" />기타 <input class="tx" type="text" name="allergy" placeholder="알레르기를 입력해주세요." />   -->
       </p>
 
       <p><button onclick="inputcheck()"/>완료!</p>
