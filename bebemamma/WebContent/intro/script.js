@@ -20,19 +20,29 @@ function inputCheck(){
 		document.regFrm.repwd.focus();
 		return ;
 	}
-	if(document.regFrm.name.value==""){
-		alert("이름을 입력해 주세요.");
-		document.regFrm.name.focus();
+	if(document.regFrm.mem_name.value==""){
+		alert("본인의 이름을 입력해 주세요.");
+		document.regFrm.mem_name.focus();
 		return ;
 	}
 	if(document.regFrm.age.value==""){
-		alert("나이를 입력해 주세요.");
+		alert("아이의 나이를 입력해 주세요.");
 		document.regFrm.age.focus();
 		return ;
 	}
-	if(document.regFrm.gender.value==""){
-		alert("성별을 입력해 주세요.");
-		document.regFrm.gender.focus();
+	if(document.regFrm.mem_gender.value==""){
+		alert("본인의 성별을 입력해 주세요.");
+		document.regFrm.mem_gender.focus();
+		return ;
+	}
+	if(document.regFrm.baby_name.value==""){
+		alert("아이의 이름을 입력해 주세요.");
+		document.regFrm.baby_name.focus();
+		return ;
+	}
+	if(document.regFrm.baby_gender.value==""){
+		alert("아이의 성별을 입력해 주세요.");
+		document.regFrm.baby_gender.focus();
 		return ;
 	}
 	document.regFrm.submit();

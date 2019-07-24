@@ -17,7 +17,7 @@ public class MemberMgr {
         	Class.forName("com.mysql.cj.jdbc.Driver");
             String dbURL="jdbc:mysql://localhost:3306/bebemamma?serverTimezone=UTC";                             
             String dbID="root";// mysql 아이디 
-            String dbPassword="0000";// mysql 비밀번호
+            String dbPassword="tnqls123";// mysql 비밀번호
             
             conn=DriverManager.getConnection(dbURL, dbID, dbPassword);
         }
@@ -50,29 +50,42 @@ public class MemberMgr {
 	public boolean insertMember(MemberBean bean) {
 	//	Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = null;
 		PreparedStatement num;
 		boolean flag = false;
+		String sql = "insert into meminfo(mem_id, password, mem_name, mem_gender, baby_name, baby_gender, baby_month, baby_height, baby_weight, skinproblem, allergy)values(?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 		//	con = pool.getConnection();
-			sql = "insert into meminfo(mem_id, password, mem_name, mem_gender, baby_height, baby_weight, baby_month, skinproblem)values(?,?,?,?, ?,?,?,?)";
+			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, bean.getId());
+			pstmt.setString(1, bean.getMemId());
 			pstmt.setString(2, bean.getPwd());
-			pstmt.setString(3, bean.getName());
-			pstmt.setString(4, bean.getGender());
-			pstmt.setFloat(5, bean.getHeight());
-			pstmt.setFloat(6, bean.getWeight());
-			pstmt.setInt(7, bean.getAge());
-			pstmt.setInt(8, bean.getSkin());
+			pstmt.setString(3, bean.getMemName());
+			pstmt.setString(4, bean.getMemGender());
+			pstmt.setString(5, bean.getBabyName());
+			pstmt.setString(6, bean.getBabyGender());
+			pstmt.setInt(7, bean.getBabyMonth());
+			pstmt.setFloat(8, bean.getBabyHeight());
+			pstmt.setFloat(9, bean.getBabyWeight());
+			pstmt.setFloat(10, bean.getSkinproblem());
+			
+			String allergy[] = bean.getAllergy();
+			char ag[] = {'0','0','0','0','0'};
+			String lists[] = {"땅콩","계란","복숭아","갑각류","우유"};
+				for(int i = 0; i<allergy.length;i++) {
+					for(int j = 0; j < lists.length; j++) {
+						if(allergy[i].equals(lists[j]))
+							ag[j] = '1';
+					}
+				}
+			pstmt.setString(11, new String(ag));
 			if(pstmt.executeUpdate() == 1){
 				flag = true;
 			}
+//			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-		//	pool.freeConnection(con, pstmt);
 		}
+//		return -1;
 		return flag;
 	}
 }
