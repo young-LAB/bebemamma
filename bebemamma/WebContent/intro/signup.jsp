@@ -45,7 +45,7 @@
         <input class="rd" type="radio" name="baby_gender" value="W" />여자
       </p>
       
-      <p>현재 아이의 연령대는? <input class="tx" type="number" name="age" placeholder="나이 입력" />(개월)
+      <p>현재 아이의 연령대는? <input class="tx" type="text" name="age" placeholder="나이 입력" />(개월)
       </p>
 
       <p>현재 아이의 키, 몸무게를 입력해주세요. (카우프 지수 측정용)<br>

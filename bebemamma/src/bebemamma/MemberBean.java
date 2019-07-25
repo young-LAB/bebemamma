@@ -11,7 +11,8 @@ public class MemberBean{
 	private float baby_height;
 	private float baby_weight;
 	private int skinproblem;
-	private String allergy[];
+	//private String allergy[];
+	
 	
 	
 	public String getMemId() {
@@ -19,7 +20,7 @@ public class MemberBean{
 	}
 	
 	public void setMemId(String mem_id) {
-		this.mem_id = mem_id;
+		this.mem_id=mem_id;
 	}
 	
 	public String getPwd() {
@@ -66,36 +67,41 @@ public class MemberBean{
 		return baby_month;
 	}
 	
-	public void setBabyMonth(int baby_month) {
-		this.baby_month = baby_month;
+	public void setBabyMonth(String baby_month) {
+		int to = Integer.parseInt(baby_month);
+		this.baby_month = to;
 	}
 	
 	public float getBabyHeight() {
 		return baby_height;
 	}
 	
-	public void setBabyHeight(float baby_height) {
-		this.baby_height = baby_height;
+	public void setBabyHeight(String baby_height) {
+		float to = Float.parseFloat(baby_height);
+		this.baby_height = to;
 	}
 	
 	public float getBabyWeight() {
 		return baby_weight;
 	}
 	
-	public void setBabyWeight(float baby_weight) {
-		this.baby_weight = baby_weight;
+	public void setBabyWeight(String baby_weight) {
+		float to = Float.parseFloat(baby_weight);
+		this.baby_weight = to;
 	}
 	
-	public String[] getAllergy() {
+/*	public String[] getAllergy() {
 		return allergy;
 	}
 	public void setAllergy(String[] allergy) {
 		this.allergy = allergy;
 	}
+	*/
 	public int getSkinproblem() {
 		return skinproblem;
 	}
-	public void setSkinproblem(int skinproblem) {
-		this.skinproblem = skinproblem;
+	public void setSkinproblem(String skinproblem) {
+		int to = Integer.parseInt(skinproblem);
+		this.skinproblem = to;
 	}
 }

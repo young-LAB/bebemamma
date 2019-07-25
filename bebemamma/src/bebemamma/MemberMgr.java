@@ -50,9 +50,9 @@ public class MemberMgr {
 	public boolean insertMember(MemberBean bean) {
 	//	Connection con = null;
 		PreparedStatement pstmt = null;
-		PreparedStatement num;
 		boolean flag = false;
-		String sql = "insert into meminfo(mem_id, password, mem_name, mem_gender, baby_name, baby_gender, baby_month, baby_height, baby_weight, skinproblem, allergy)values(?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into meminfo(mem_id, password, mem_name, mem_gender, baby_name, baby_gender, baby_month, baby_height, baby_weight, skinproblem, allergy)"
+				+ "values(?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 		//	con = pool.getConnection();
 			
@@ -68,7 +68,7 @@ public class MemberMgr {
 			pstmt.setFloat(9, bean.getBabyWeight());
 			pstmt.setFloat(10, bean.getSkinproblem());
 			
-			String allergy[] = bean.getAllergy();
+			/*String allergy[] = bean.getAllergy();
 			char ag[] = {'0','0','0','0','0'};
 			String lists[] = {"땅콩","계란","복숭아","갑각류","우유"};
 				for(int i = 0; i<allergy.length;i++) {
@@ -76,8 +76,9 @@ public class MemberMgr {
 						if(allergy[i].equals(lists[j]))
 							ag[j] = '1';
 					}
-				}
-			pstmt.setString(11, new String(ag));
+				}*/
+			//pstmt.setString(11, new String(ag));
+			pstmt.setString(11, null);
 			if(pstmt.executeUpdate() == 1){
 				flag = true;
 			}

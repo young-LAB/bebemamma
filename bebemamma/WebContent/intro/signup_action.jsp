@@ -1,10 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("UTF-8");%>
 <jsp:useBean id="mgr" class="bebemamma.MemberMgr"/>
-<jsp:useBean id="bean" class="bebemamma.MemberBean"/>
-<jsp:setProperty property="*" name="bean"/>
+<%@ page import="bebemamma.MemberBean" %>
+
 <%
-	boolean result = mgr.insertMember(bean);
+
+	MemberBean memBean = new MemberBean();
+	memBean.setMemId(request.getParameter("id"));
+	memBean.setPwd(request.getParameter("pwd"));
+	memBean.setMemName(request.getParameter("mem_name"));
+	memBean.setMemGender(request.getParameter("mem_gender"));
+	memBean.setBabyName(request.getParameter("baby_name"));
+	memBean.setBabyGender(request.getParameter("baby_gender"));
+	memBean.setBabyMonth(request.getParameter("age"));
+	memBean.setBabyHeight(request.getParameter("height"));
+	memBean.setBabyWeight(request.getParameter("weight"));
+	memBean.setSkinproblem(request.getParameter("skin"));
+//	memBean.setAllergy(request.getParameter("allergy"));
+	
+	boolean result = mgr.insertMember(memBean);
 	String msg = "회원가입에 실패하였습니다.";
 	String location = "signup.jsp";
 	if(result){
