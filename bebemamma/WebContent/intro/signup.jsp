@@ -63,7 +63,7 @@
         <input class="ch" type="checkbox" name="allergy" value="복숭아" />복숭아
         <input class="ch" type="checkbox" name="allergy" value="갑각류" />갑각류
         <input class="ch" type="checkbox" name="allergy" value="우유" />우유 
-       <!-- <input class="ch" type="checkbox" name="allergy" value="기타" />기타 <input class="tx" type="text" name="allergy" placeholder="알레르기를 입력해주세요." />   -->
+       	<input class="ch" type="checkbox"/>기타 <input class="tx" type="text" name="allergy" placeholder="알레르기를 입력해주세요." />
       </p>
 
       <p><button onclick="inputcheck()"/>완료!</p>

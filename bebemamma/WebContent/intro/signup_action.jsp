@@ -16,7 +16,8 @@
 	memBean.setBabyHeight(request.getParameter("height"));
 	memBean.setBabyWeight(request.getParameter("weight"));
 	memBean.setSkinproblem(request.getParameter("skin"));
-//	memBean.setAllergy(request.getParameter("allergy"));
+	memBean.setAllergy(request.getParameterValues("allergy"));
+	
 	
 	boolean result = mgr.insertMember(memBean);
 	String msg = "회원가입에 실패하였습니다.";
