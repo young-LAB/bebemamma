@@ -18,14 +18,15 @@
 	}
 	
 	h1 {
+		display : block;
 		margin: 2em 0 1.5em 0;
 	}
 	
 	nav {
 		width: 100%;
 		display: flex;
+		position : relative;
 		justify-content: center;
-		position: relative;
 		background: #004d7a;
 	}
 	
