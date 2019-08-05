@@ -1,0 +1,10 @@
+
+table {
+      width : 600px;
+      height : 100px;
+      }
+      
+      
+      svg { width: 500px; height: 400px; border: 1px solid black;}
+    .pie { fill: orange; stroke: white; }
+    .pieNum { font-size: 10pt; text-anchor: middle; }

@@ -11,8 +11,7 @@
     }
 
     #foot {
-      position: absolute;
-      bottom: 0;
+      bottom: 0px;
       width: 100%;
       height: 50px;
       background-color: silver;

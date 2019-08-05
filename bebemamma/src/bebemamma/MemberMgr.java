@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-//import java.util.Vector;
 
 public class MemberMgr {
 	
@@ -68,17 +67,17 @@ public class MemberMgr {
 			pstmt.setFloat(9, bean.getBabyWeight());
 			pstmt.setFloat(10, bean.getSkinproblem());
 			
-			/*String allergy[] = bean.getAllergy();
-			char ag[] = {'0','0','0','0','0'};
-			String lists[] = {"땅콩","계란","복숭아","갑각류","우유"};
-				for(int i = 0; i<allergy.length;i++) {
-					for(int j = 0; j < lists.length; j++) {
-						if(allergy[i].equals(lists[j]))
-							ag[j] = '1';
-					}
-				}*/
-			//pstmt.setString(11, new String(ag));
-			pstmt.setString(11, null);
+			String ag = "";
+			
+			for(int i = 0; i < bean.getAllergy().length; i++) {
+				ag = ag + bean.getAllergy()[i];
+			
+				if(i != bean.getAllergy().length - 1){
+					ag = ag + ", ";
+				}
+			}
+			
+			pstmt.setString(11, ag);
 			if(pstmt.executeUpdate() == 1){
 				flag = true;
 			}

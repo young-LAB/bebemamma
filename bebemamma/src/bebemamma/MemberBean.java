@@ -11,7 +11,7 @@ public class MemberBean{
 	private float baby_height;
 	private float baby_weight;
 	private int skinproblem;
-	//private String allergy[];
+	private String allergy[];
 	
 	
 	
@@ -90,13 +90,13 @@ public class MemberBean{
 		this.baby_weight = to;
 	}
 	
-/*	public String[] getAllergy() {
+	public String[] getAllergy() {
 		return allergy;
 	}
 	public void setAllergy(String[] allergy) {
 		this.allergy = allergy;
 	}
-	*/
+	
 	public int getSkinproblem() {
 		return skinproblem;
 	}
