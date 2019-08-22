@@ -7,9 +7,7 @@
 	<title>Insert title here</title>
 	<link rel="stylesheet" href="./ingre.css" />
 
-
 	<script src="https://d3js.org/d3.v4.js"></script>
-    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     
 </head>
 <body>
@@ -35,7 +33,18 @@
     </table>
 
     <h3>선택한 재료의 영양소</h3>
-    <svg id = "my_ingre"></svg>
+	<div>
+	    <svg id="myGraph"></svg>
+	    <br>
+	    <canvas style = "background-color: #00bcd4;" id="cv"></canvas><span>열량</span>
+	    <canvas style = "background-color: #FF9800;" id="cv"></canvas><span>단백질</span>
+	    <canvas style = "background-color: #673ab7d6;" id="cv"></canvas><span>칼슘</span>
+	    <canvas style = "background-color: #e84c81;" id="cv"></canvas><span>철분</span>
+	    <canvas style = "background-color: #8bc34a;" id="cv"></canvas><span>비타민C</span>
+	</div>
+
+      <button onClick="window.location.reload()">새로고침</button>
+
     <script src="./ingre.js"></script>
 <br>
 <%@include file="../include/footer.jsp"%>
