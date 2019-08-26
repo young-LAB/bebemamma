@@ -28,6 +28,7 @@
 		position : relative;
 		justify-content: center;
 		background: #004d7a;
+		z-index : 99;
 	}
 	
 	ul, li {
