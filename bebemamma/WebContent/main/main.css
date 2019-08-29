@@ -16,11 +16,8 @@ html, body {
     font-family: 'PT Sans', sans-serif;
     font-family: 'Nanum Gothic', sans-serif;
 }
-	.nav{
-		z-index : 3;
-	}
 
-    .h1 {;
+    .h1 {
         font-size: 2em;
     }
     
@@ -36,7 +33,6 @@ html, body {
         height: 100%;
         margin: 0 auto;
         padding: 0;
-        z-index: 10;
         display: block;
     }
 
@@ -81,7 +77,6 @@ html, body {
     }
 
     .container {
-    	z-index : 1;
         padding-top: 64px;
         height: 100%;
         margin: 0 auto;
@@ -106,7 +101,6 @@ html, body {
       background-repeat: no-repeat;
       background-position: center center;
       height: 114px;
-
       margin-top: 120px;
       margin-bottom: 50px;
     }
@@ -131,7 +125,6 @@ html, body {
         background-color: #5EDFDF;
         background-position: 50% 0;
         background-image: url("../img/baby_main.png");
-        z-index: 99;
         background-repeat: no-repeat;
         background-size: cover;
     }
