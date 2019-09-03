@@ -1,11 +1,9 @@
-drawPie("../../data/ingre.csv");
+drawPie("ingre.csv");
 
-d3.select("#year").on("change", function(){
-  d3.select("#myGraph").selectAll("*").remove();
-  drawPie("mydata"+this.value+".csv", this.value);
-});
+
 
 function drawPie(filename){
+	
   //csv파일의 데이터를 불러옴.
   d3.csv(filename, function(error, data){
 
@@ -15,7 +13,8 @@ function drawPie(filename){
 
     var dataSet = [ ];
     for(var i in data[0]){
-      dataSet.push(data[0][i]);
+    	console.log("herreeeee" + i);	
+    	dataSet.push(data[0][i]);
     }
 
     var svgEle = document.getElementById("myGraph");

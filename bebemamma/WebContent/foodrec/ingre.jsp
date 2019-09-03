@@ -7,7 +7,7 @@
 	<title>Insert title here</title>
 	<link rel="stylesheet" href="./ingre.css" />
 
-	<script src="https://d3js.org/d3.v4.js"></script>
+	<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     
 </head>
 <body>
