@@ -21,7 +21,7 @@
 		if(result==1){
 			session.setAttribute("id", id);
 			session.setAttribute("pw", pw);
-			response.sendRedirect("../main/main.jsp");
+			response.sendRedirect("../intro/intro.jsp");
 		}
 		//로그인 실패
 		else if(result == 0){

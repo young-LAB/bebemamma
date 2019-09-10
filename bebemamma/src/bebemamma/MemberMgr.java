@@ -16,7 +16,7 @@ public class MemberMgr {
         	Class.forName("com.mysql.cj.jdbc.Driver");
             String dbURL="jdbc:mysql://localhost:3306/bebemamma?serverTimezone=UTC";                             
             String dbID="root";// mysql 아이디 
-            String dbPassword="0000";// mysql 비밀번호
+            String dbPassword="tnqls123";// mysql 비밀번호
             
             conn=DriverManager.getConnection(dbURL, dbID, dbPassword);
         }

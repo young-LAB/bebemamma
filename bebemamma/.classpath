@@ -8,14 +8,18 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Users/byeonghooh/eclipse-new-workspace/graduworkflow_renewed/bebemamma/bebemamma/lib/commons-math3-3.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/byeonghooh/eclipse-new-workspace/graduworkflow_renewed/bebemamma/bebemamma/lib/guava-23.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/byeonghooh/eclipse-new-workspace/graduworkflow_renewed/bebemamma/bebemamma/lib/mahout-core-0.9.jar"/>
-	<classpathentry kind="lib" path="C:/Users/byeonghooh/eclipse-new-workspace/graduworkflow_renewed/bebemamma/bebemamma/lib/mahout-integration-0.9.jar"/>
-	<classpathentry kind="lib" path="C:/Users/byeonghooh/eclipse-new-workspace/graduworkflow_renewed/bebemamma/bebemamma/lib/mahout-math-0.9.jar"/>
-	<classpathentry kind="lib" path="C:/Users/byeonghooh/eclipse-new-workspace/graduworkflow_renewed/bebemamma/bebemamma/lib/slf4j-api-1.7.27.jar"/>
-	<classpathentry kind="lib" path="C:/Users/byeonghooh/eclipse-new-workspace/graduworkflow_renewed/bebemamma/bebemamma/lib/slf4j-nop-1.7.27.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/byeonghooh/eclipse-new-workspace/mysql-connector-java-8.0.17/mysql-connector-java-8.0.17/mysql-connector-java-8.0.17.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Library/Java/JavaVirtualMachines/jdk-11.0.3.jdk/Contents/Home/lib/commons-math3-3.2.jar"/>
+	<classpathentry kind="lib" path="/Library/Java/JavaVirtualMachines/jdk-11.0.3.jdk/Contents/Home/lib/guava-23.0.jar"/>
+	<classpathentry kind="lib" path="/Library/Java/JavaVirtualMachines/jdk-11.0.3.jdk/Contents/Home/lib/mahout-core-0.9.jar"/>
+	<classpathentry kind="lib" path="/Library/Java/JavaVirtualMachines/jdk-11.0.3.jdk/Contents/Home/lib/mahout-integration-0.9.jar"/>
+	<classpathentry kind="lib" path="/Library/Java/JavaVirtualMachines/jdk-11.0.3.jdk/Contents/Home/lib/mahout-math-0.9.jar"/>
+	<classpathentry kind="lib" path="/Library/Java/JavaVirtualMachines/jdk-11.0.3.jdk/Contents/Home/lib/slf4j-api-1.7.27.jar"/>
+	<classpathentry kind="lib" path="/Library/Java/JavaVirtualMachines/jdk-11.0.3.jdk/Contents/Home/lib/slf4j-nop-1.7.27.jar"/>
+	<classpathentry kind="lib" path="/Library/Java/JavaVirtualMachines/jdk-11.0.3.jdk/Contents/Home/lib/mysql-connector-java-8.0.17.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

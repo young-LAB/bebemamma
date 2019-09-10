@@ -23,7 +23,7 @@
 </head>
 <body onLoad="regFrm.id.focus()">
 <%@include file="../include/header.jsp"%>
-<form name = "regForm" action="signup_action.jsp" method="post">
+<form name = "regFrm" action="signup_action.jsp" method="post">
     <fieldset>
 
       <h1 id="signup">회원가입</h1>
