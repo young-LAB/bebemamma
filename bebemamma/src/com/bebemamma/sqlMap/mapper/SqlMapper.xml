@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="SqlMapper">
+     
+    <select id="getCount" resultType="int">
+     
+        SELECT
+            count(*)
+        FROM
+            TB_test a
+     
+    </select>
+     
+     
+    <select id="getContents" resultType="hashmap">
+     
+        SELECT
+            id, name
+        FROM
+            TB_test a
+        WHERE
+            id = 'admin'
+     
+    </select>
+     
+     
+    <select id="getList" resultType="hashmap">
+     
+        SELECT
+            id, name
+        FROM
+            TB_test a
+     
+    </select>
+     
+     
+    <select id="getCountP" parameterType="hashmap" resultType="int">
+     
+        SELECT
+            count(*)
+        FROM
+            TB_test a
+        WHERE
+            name = #{name}
+     
+    </select>
+     
+     
+    <select id="getContentsP" parameterType="hashmap" resultType="hashmap">
+     
+        SELECT
+            id, name
+        FROM
+            TB_test a
+        WHERE
+            id = #{name} and age = #{age}
+     
+    </select>
+    
+    <select id="getItemNum"  resultType="int">
+     
+       SELECT
+            count(*)
+       FROM
+            babymeal
+     
+    </select>
+    
+    <select id="getItemNum_brand" parameterType="String"  resultType="int">
+     
+       SELECT
+            count(*)
+       FROM
+            babymeal
+       WHERE
+       		brand = #{brand};
+     
+    </select>
+    
+    <select id="getFoodList"  parameterType="int" resultType="hashmap">
+     
+       SELECT
+            product_id, product_name, brand, filename  
+       FROM
+            babymeal
+       WHERE
+        	product_id between 12*(#{id}-1)+1 AND 12*#{id}
+       ORDER BY 
+       		product_id;
+     
+    </select>
+    
+    <select id="getFoodList_brand"  parameterType="hashmap" resultType="hashmap">
+     
+       SELECT
+            product_id, product_name, brand, filename  
+       FROM
+            babymeal
+       WHERE        	
+        	brand = #{pagebrand}
+       ORDER BY 
+       		product_id
+       LIMIT
+       		${id}, 12;
+       		
+    </select>
+ 
+ 	<insert id="item_insert" parameterType="hashmap">
+ 	
+ 		INSERT INTO item(
+ 			values(${user_id}, ${item_id}, ${preference});
+ 		)
+ 	
+ 	</insert>
+ 
+</mapper>

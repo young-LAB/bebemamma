@@ -1,7 +1,12 @@
 package com.bebemamma.itemrecommend;
 
-import java.io.File;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
 import org.apache.mahout.cf.taste.impl.neighborhood.NearestNUserNeighborhood;
@@ -15,21 +20,68 @@ import org.apache.mahout.cf.taste.similarity.UserSimilarity;
 
 public class UserRecommend {
 	/* 추후 함수형으로 바꿀 것임 */
-	public static void main(String[] args) throws Exception {
-		/* 데이터 모델 생성 */
-		DataModel model = new FileDataModel(new File("data/item.csv"));
-		/* 유사도 측정 모델 생성 - 타니모토 계수 */
-		UserSimilarity similarity = new PearsonCorrelationSimilarity(model);
+	DataModel model = null;
+    
+    
+	public UserRecommend() throws Exception {
+		
+	}
+	
+	public HashMap reco_item(int id) throws Exception {
+		HashMap<Integer, Object> list = new HashMap<Integer, Object>();
+		this.model = new FileDataModel(new File("data/item.csv"));
+		
+		if(!this.checkID(id)) {
+			this.setData(id, 1, 3);
+			this.model = new FileDataModel(new File("data/item.csv"));
+		}
+		else {
+			System.out.println("pass");
+		}
+		
+		/* 유사도 측정 모델 생성 - 피어슨 계수 */
+		UserSimilarity similarity = new PearsonCorrelationSimilarity(this.model);
 
 		/* 모든 유저들로부터 주어진 유저와 특정유저간의 유사성을 비교한다.*/
-		UserNeighborhood neighborhood = new NearestNUserNeighborhood(2, similarity, model);
+		UserNeighborhood neighborhood = new NearestNUserNeighborhood(2, similarity, this.model);
 		/* 추천기 생성*/
-		Recommender recommender = new GenericUserBasedRecommender(model, neighborhood, similarity);
-		/* 1번 유저에게 추천할 3가지 물품 추천 */
-		List<RecommendedItem> recommendations = recommender.recommend(1, 3);
+		Recommender recommender = new GenericUserBasedRecommender(this.model, neighborhood, similarity);
+		
+		
+		/* id 유저에게 추천할 5가지 물품 추천 */
+		List<RecommendedItem> recommendations = recommender.recommend(id, 5);
+		
 		/* 출력 */
+		int k = 0;
 		for (RecommendedItem recommendation : recommendations) {
-			System.out.println(recommendation);
+			list.put(k, recommendation.getItemID());
+			k++;
+		}
+		
+		return list;
+	}
+	
+	public boolean checkID(int id) throws Exception {
+		try {
+			Iterator itr = this.model.getUserIDs();
+			while(itr.hasNext()) {
+				 if(itr.next().equals((long)id)) return true;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return false;
+	}
+	
+	public void setData(int id, int item, int favor) throws IOException {
+		File file = new File("data/item.csv");
+		try {
+			FileWriter fw = new FileWriter(file, true);
+			fw.write("\n"+id+","+item+","+favor);
+			fw.close();
+		} catch(Exception e) {
+			e.printStackTrace();
 		}
 	}
 }
