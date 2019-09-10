@@ -49,11 +49,7 @@
 								class="icon mr-2 d-flex justify-content-center align-items-center">
 								<span class="icon-paper-plane"></span>
 							</div>
-							<% if((String)session.getAttribute("id") == null){ %>
 							<span class="text">로그인 되어있지 않음</span>
-							<% }else{ %>
-							<span class="text"><%=(String)session.getAttribute("id")%>님 안녕하세요.</span>
-							<% } %>
 						</div>
 						<div
 							class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
@@ -74,18 +70,7 @@
 				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="oi oi-menu"></span> Menu
 			</button>
-			
-			<% if((String)session.getAttribute("id") == null){ %>
-			<div class="collapse navbar-collapse" id="ftco-nav">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a href="index.html"
-						class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="about.html" class="nav-link">소개</a></li>
-					<li class="nav-item"><button class="nav-link"><a href="./reallogin.jsp">로그인</a></button></li>
-				
-				</ul>
-			</div>
-			<% }else{ %>
+
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active"><a href="index.html"
@@ -104,13 +89,9 @@
 					
 					<li class="nav-item"><a href="blog.html" class="nav-link">베베맘마 톡톡</a></li>
 					<li class="nav-item"><a href="contact.html" class="nav-link">마이페이지</a></li>
-					<li class="nav-item"><button href="./logout.jsp" class="nav-link">로그아웃</button></li>
-				
+
 				</ul>
 			</div>
-			<% } %>
-			
-			
 		</div>
 	</nav>
 	<!-- END nav -->

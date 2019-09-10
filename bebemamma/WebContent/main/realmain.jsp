@@ -50,7 +50,7 @@
 								class="icon mr-2 d-flex justify-content-center align-items-center">
 								<span class="icon-paper-plane"></span>
 							</div>
-							<span class="text"><%=(String)session.getAttribute("id")%>님 안녕하세요.</span>
+							<span class="text">로그인 되어있지 않음</span>
 						</div>
 						<div
 							class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
