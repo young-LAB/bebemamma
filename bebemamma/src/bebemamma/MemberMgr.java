@@ -1,71 +1,58 @@
 package bebemamma;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.List;
+import com.bebemamma.sqlMap.*; 
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSession;
 
 public class MemberMgr {
-	
-	private Connection conn;
-//	private DBConnectionMgr pool;
+    private SqlSessionFactory sqlSessionFactory = null; 
+    private SqlSession sqlSession = null;
 	
 	public MemberMgr() {
-		try {
-            //생성자
-        	Class.forName("com.mysql.cj.jdbc.Driver");
-            String dbURL="jdbc:mysql://localhost:3306/bebemamma?serverTimezone=UTC";                             
-            String dbID="root";// mysql 아이디 
-            String dbPassword="0000";// mysql 비밀번호
-            
-            conn=DriverManager.getConnection(dbURL, dbID, dbPassword);
-        }
-        catch (Exception e) {
-        	System.out.println("error");
-        }
+		this.sqlSessionFactory = SqlSessionManager.getSqlSession();
+        this.sqlSession = sqlSessionFactory.openSession(true);
+	}
+	
+	public int login(String userID, String userPassword) {
+    	try{
+    		String result = sqlSession.selectOne("check_pw", userID);
+    		if(result != null) {
+				// 패스워드 일치한다면 실행
+				if (result.equals(userPassword)) {
+					return 1; // 로그인 성공
+				} else
+					return 0; // 비밀번호 불일치
+    		}	
+			return -1; // 아이디가 없음 오류
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -2; // 데이터베이스 오류를 의미
 	}
 	
 	public boolean checkId(String id) {
-	//	Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = null;
-		boolean flag = false;
-		try {
-		//	con = pool.getConnection();
-			sql = "select mem_id from meminfo where mem_id = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			flag = pstmt.executeQuery().next();
-		} catch(Exception e) {
+		try{
+    		String result = sqlSession.selectOne("check_id", id);
+    		if(result != null) {
+				return true;
+    		}	
+    		else return false; 
+		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-		//	pool.freeConnection(con, pstmt, rs);
 		}
-		
-		return flag;
+		return false;
+	}
+	
+	public int get_Idnum(String id) {
+		int result = sqlSession.selectOne("get_num_fromid", id);
+		return result;
 	}
 	
 	public boolean insertMember(MemberBean bean) {
-	//	Connection con = null;
-		PreparedStatement pstmt = null;
-		boolean flag = false;
-		String sql = "insert into meminfo(mem_id, password, mem_name, mem_gender, baby_name, baby_gender, baby_month, baby_height, baby_weight, skinproblem, allergy)"
-				+ "values(?,?,?,?,?,?,?,?,?,?,?)";
 		try {
-		//	con = pool.getConnection();
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, bean.getMemId());
-			pstmt.setString(2, bean.getPwd());
-			pstmt.setString(3, bean.getMemName());
-			pstmt.setString(4, bean.getMemGender());
-			pstmt.setString(5, bean.getBabyName());
-			pstmt.setString(6, bean.getBabyGender());
-			pstmt.setInt(7, bean.getBabyMonth());
-			pstmt.setFloat(8, bean.getBabyHeight());
-			pstmt.setFloat(9, bean.getBabyWeight());
-			pstmt.setFloat(10, bean.getSkinproblem());
+			HashMap<String, Object> hash = new HashMap<String, Object>();
 			
 			String ag = "";
 			
@@ -76,16 +63,23 @@ public class MemberMgr {
 					ag = ag + ", ";
 				}
 			}
+			bean.setrealAllergy(ag);
+			int result = sqlSession.insert("member_insert", bean);
 			
-			pstmt.setString(11, ag);
-			if(pstmt.executeUpdate() == 1){
-				flag = true;
+			System.out.println(result);
+			if(result==1) {
+				return true;
 			}
-//			return pstmt.executeUpdate();
+			else return false;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-//		return -1;
-		return flag;
+		return false;
 	}
+	
+	public String getAllegy(String id) {
+		String alle = sqlSession.selectOne("check_allegy", id); 
+		return alle;
+	}
+
 }

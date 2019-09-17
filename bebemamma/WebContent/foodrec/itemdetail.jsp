@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="bebemamma.ItemDAO" %>
+<%@ page import="com.bebemamma.itemrecommend.UserRecommend" %>
 <%@ page import="java.util.*" %>
-<%@ page import="bebemamma.MemberMgr" %>
 <jsp:useBean id="mgr" class="bebemamma.MemberMgr"/>
+<%@ page import="bebemamma.MemberBean" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <!DOCTYPE html>
@@ -44,7 +45,7 @@
 <link rel="stylesheet" href="../css/magnific-popup.css">
 
 <link rel="stylesheet" href="../css/aos.css">
-
+<link rel="stylesheet" href="./modal.css">
 <link rel="stylesheet" href="../css/ionicons.min.css">
 
 <link rel="stylesheet" href="../css/bootstrap-datepicker.css">
@@ -61,6 +62,8 @@
 <link rel="stylesheet" href="../css/style.css">
 
 <link rel="stylesheet" href="../css/custom.css">
+<link rel="stylesheet" href="./star.css">
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 
 <style>
       .flaticon-recommended:before { 
@@ -138,7 +141,7 @@
          <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
             <!-- 화면 두개의 필요성 있음 -->
-               <li class="nav-item active"><a href="../intro/intro.jsp"
+               <li class="nav-item active"><a href="./intro.jsp"
                   class="nav-link">Home</a></li>
                <li class="nav-item"><a href="about.jsp" class="nav-link">사이트 소개</a></li>
                <li class="nav-item"><button class="nav-link"><a href="../intro/reallogin.jsp">로그인</a></button></li>
@@ -181,324 +184,166 @@
    <!-- END nav -->
 	<%
   	ItemDAO itemDAO = new ItemDAO();
-  	int ct = itemDAO.getNumber();
-  	String pageNumber = "1";
-  	String pageBrand = "All";
-  	HashMap<String, Object> result = new HashMap<String, Object>();
-  	if(request.getParameter("pageNumber") != null){
-  		pageNumber = request.getParameter("pageNumber");
-  	}
-  	if(request.getParameter("brand") != null){
-  		pageBrand = request.getParameter("brand");
-  	}
-
-  	if((String)session.getAttribute("id")==null){
-  		result = itemDAO.get_RecoItem(1);	
-  	}
-  	else{
-  		String stri = session.getAttribute("id").toString();
-  		int idnumber = mgr.get_Idnum(stri);
-  		result = itemDAO.get_RecoItem(idnumber);
-  	}
-  	
+  	String itemid = "1";
+  	if(request.getParameter("itemid") != null){
+  		itemid = request.getParameter("itemid");
+  	}  	
   	try{
-  		Integer.parseInt(pageNumber);
+  		Integer.parseInt(itemid);
   	} catch(Exception e){
   		session.setAttribute("messageType", "오류 메시지");
   		session.setAttribute("messageContent", "페이지번호가 잘못되었습니다.");
   		response.sendRedirect("age.jsp");
   	}
+  	HashMap<String, Object> map = itemDAO.getIteminfo(Integer.parseInt(itemid));
   %>
-  
-    <div class="hero-wrap hero-bread" style="background-image: url('../img/bg_1.jpg');">
+<div class="hero-wrap hero-bread" style="background-image: url('../img/bg_1.jpg');">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">All</a></span> <span>Products</span></p>
-            <h1 class="mb-0 bread">이유식 리스트</h1>
+          	<p class="breadcrumbs"><span class="mr-2"><a href="../intro/index.html">Home</a></span> <span class="mr-2"><a href="./age.jsp">Product</a></span> <span>Product Single</span></p>
+            <h1 class="mb-0 bread">Product Single</h1>
           </div>
         </div>
       </div>
     </div>
 
 	<section class="ftco-section ftco-no-pt ftco-no-pb py-5">
-		<div class="container py-4">
-			<div class="row d-flex justify-content-center py-5">
-				<div class="col-md-10 ">
+			<div class="container py-4">
+				<div class="row d-flex justify-content-center py-5">
+					<div class="col-md-10 ">
 
 
-					<div class="page-header mt-1">
-						<h2>id님을 위한 맞춤 추천 이유식</h2>
+						<div class="page-header mt-1">
+							<h2>리뷰 및 Q&A 게시판</h2>
+						</div>
+
+						<p class="lead">제품에 대한 리뷰나 기타 궁금한 사항을 공유해보아요</p>
+						<hr>
 					</div>
-
-					<p class="lead">회원님이 선택한 상품을 바탕으로 추천된 아이템입니다.</p>
-					<hr>
-
-
-					<div class="row">
+				</div>
+			<div class="row">
+				<div class="col-lg-6 mb-5 ftco-animate">
+					<%
+						out.println("<a href=\"../img/" + map.get("filename")
+								+ "\" class=\"image-popup\"><img class=\"img-fluid\" src=\"../img/" + map.get("filename")
+								+ "\" alt=\"Colorlib Template\"><div class=\"overlay\"></div></a>");
+					%>
+				</div>
+				<div class="col-lg-6 product-details pl-md-5 ftco-animate">
+					<h3><%=map.get("product_name")%></h3>
+					<div class="rating d-flex">
 						<%
-							int array[] = new int[8];
-							int rand[] = new int[4];
-							int u, y;
-							int count = 0;
-							for (Iterator<Object> itr = result.values().iterator(); itr.hasNext();) {
-								array[count] = Integer.parseInt(itr.next().toString());
-								count++;
+							UserRecommend usr = new UserRecommend();
+							int realid = mgr.get_Idnum(session.getAttribute("id").toString());
+							int realitem = Integer.parseInt(map.get("product_id").toString());
+							int count = usr.checkID_inItem(realid, realitem);
+							if (count == -1) {
+						%>
+						<div class="starRev">
+							<span class="starR on">별1</span> <span class="starR">별2</span> <span
+								class="starR">별3</span> <span class="starR">별4</span> <span
+								class="starR">별5</span>
+						</div>
+						<input type="button" value="submit" onclick="getResult()">
+						<%
+						  String v = request.getParameter("score");
+						  System.out.println(v);
+							}else{
+								for(int z =0; z<count; z++){
+									out.print("<span class=\"starR on\">별1</span>");
+								}
+								for(int t =0; t<5-count; t++){
+									out.print("<span class=\"starR\">별2</span>");		
+								}
 							}
-							
-							Collections.shuffle(Arrays.asList(array));
+						%>
 
-							for (u = 0; u < 4; u++) {
-								HashMap<String, Object> map = itemDAO.getIteminfo(array[u]);
+						<p class="text-left mr-4">
+							<a href="#" class="mr-2" style="color: #000;"> 100 <span
+								style="color: #bbb;">Rating</span></a>
+						</p>
+						<p class="text-left">
+							<a href="#" class="mr-2" style="color: #000;">500 <span
+								style="color: #bbb;">Sold</span></a>
+						</p>
+					</div>
+					<p class="price">
+						<span><%=map.get("brand")%></span>
+					</p>
+					<h2 class="heading"><%=map.get("ingredient")%></h2>
+					<%
+					String aller = mgr.getAllegy(session.getAttribute("id").toString());
+					String ingridi = map.get("ingredient").toString();
+					String alle_arr[] = aller.split(",");
+					String ingridi_arr[] = ingridi.split(",");
+					//String alert_in[]= new;
+					int boom = 0;
+					boolean flag = false;
+					for(int b =0; b< alle_arr.length; b++){
+						for(int c=0; c<ingridi_arr.length; c++){
+							if(alle_arr[b].equals(ingridi_arr[c])){
+								flag = true;
+								//alert_in[boom] = ingridi_arr[c];
+							}
+						}
+					}
+					if(flag==true){
+				%>
+					<p class="price">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 알레르기 있습니다
+						주의하세요.... 해당 재료는 !</p>
+					<%
+					}else{
+				%>
+					<p class="price"><span>알레르기 없다.</span></p>
+					<%
+					}
+				%>
+				</div>
+				<p>
+				<img src="../img/img_alle.png" >
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="ftco-section">
+    	<div class="container">
+				<div class="row justify-content-center mb-3 pb-3">
+          <div class="col-md-12 heading-section text-center ftco-animate">
+          	<span class="subheading">Products</span>
+            <h2 class="mb-4">관련 상품들</h2>
+            <p>현재 선택한 상품과 관련 있는 상품들 입니다.</p>
+          </div>
+        </div>   		
+    	</div>
+    	<div class="container">
+    		<div class="row">
+						<%
+							List<Object> foodlist = itemDAO.get_RelatedItem(String.valueOf(map.get("month")));
+							Collections.shuffle(foodlist);
+							for(int s =0; s<4; s++){
+								HashMap<String, Object> hmap = itemDAO.getIteminfo(Integer.parseInt(foodlist.get(s).toString()));
 								out.println("<div class=\"col-md-6 col-lg-3 ftco-animate\">");
 								out.println("<div class=\"product\">");
-								out.println("<a href=\"./itemdetail.jsp?itemid=" + String.valueOf(map.get("product_id"))
-										+ "\" class=\"img-prod\"><img class=\"img-fluid\" src=\"../img/" + map.get("filename")
+								out.println("<a href=\"./itemdetail.jsp?itemid=" + String.valueOf(hmap.get("product_id"))
+										+ "\" class=\"img-prod\"><img class=\"img-fluid\" src=\"../img/" + hmap.get("filename")
 										+ "\" alt=\"Colorlib Template\"><div class=\"overlay\"></div></a>");
 								out.println("<div class=\"text py-3 pb-4 px-3 text-center\">");
-								out.println("<h3><a href=\"" + 123 + "\">" + map.get("product_name") + "</a></h3>");
+								out.println("<h3><a href=\"" + 123 + "\">" + hmap.get("product_name") + "</a></h3>");
 								out.println(
 										"<div class=\"d-flex\"><div class=\"pricing\"><p class=\"price\"><span class=\"price-sale\">"
-												+ map.get("brand") + "</span></p></div></div>");
+												+ hmap.get("brand") + "</span></p></div></div>");
 								out.println("<div class=\"bottom-area d-flex px-3\">");
 								out.println("</div></div></div></div>");
 							}
+							
 						%>
-					</div>
-				</div>
 			</div>
-
-		</div>
-
-	</section>
-
-	<section class="ftco-section ftco-no-pt ftco-no-pb py-5">
-		<div class="container py-4">
-			<div class="row d-flex justify-content-center py-5">
-				<div class="col-md-10 ">
-
-
-					<div class="page-header mt-1">
-						<h2>이유식 리스트</h2>
-					</div>
-
-					<p class="lead">베베맘마가 가진 상품 목록입니다.</p>
-					<hr>
-					<section class="ftco-section">
-						<div class="container">
-							<div class="row justify-content-center">
-								<div class="col-md-10 mb-5 text-center">
-									<ul class="product-category">
-										<%
-											if (pageBrand.equals("All")) {
-										%>
-										<li><a href="age.jsp?pageNumber=1&brand=All"
-											class="active">All</a></li>
-										<li><a href="age.jsp?pageNumber=1&brand=베베쿡">베베쿡</a></li>
-										<li><a href="age.jsp?pageNumber=1&brand=풀무원">풀무원</a></li>
-										<li><a href="age.jsp?pageNumber=1&brand=베이비본">베이비본</a></li>
-										<%
-											} else {
-										%>
-										<li><a href="age.jsp?pageNumber=1&brand=All">All</a></li>
-										<%
-											if (pageBrand.equals("베베쿡")) {
-										%>
-										<li><a href="age.jsp?pageNumber=1&brand=베베쿡"
-											class="active">베베쿡</a></li>
-										<%
-											} else {
-										%>
-										<li><a href="age.jsp?pageNumber=1&brand=베베쿡">베베쿡</a></li>
-										<%
-											}
-												if (pageBrand.equals("풀무원")) {
-										%>
-										<li><a href="age.jsp?pageNumber=1&brand=풀무원"
-											class="active">풀무원</a></li>
-										<%
-											} else {
-										%>
-										<li><a href="age.jsp?pageNumber=1&brand=풀무원">풀무원</a></li>
-										<%
-											}
-												if (pageBrand.equals("베이비본")) {
-										%>
-										<li><a href="age.jsp?pageNumber=1&brand=베이비본"
-											class="active">베이비본</a></li>
-										<%
-											} else {
-										%>
-										<li><a href="age.jsp?pageNumber=1&brand=베이비본">베이비본</a></li>
-										<%
-											}
-											}
-										%>
-									</ul>
-								</div>
-							</div>
-
-							<div class="row">
-								<%
-									if (pageBrand.equals("All")) {
-										List<HashMap<String, String>> list = itemDAO.getFoodList(Integer.parseInt(pageNumber));
-										for (HashMap<String, String> l : list) {
-											out.println("<div class=\"col-md-6 col-lg-3 ftco-animate\">");
-											out.println("<div class=\"product\">");
-											out.println("<a href=\"./itemdetail.jsp?itemid=" + String.valueOf(l.get("product_id"))
-													+ "\" class=\"img-prod\"><img class=\"img-fluid\" src=\"../img/" + l.get("filename")
-													+ "\" alt=\"Colorlib Template\"><div class=\"overlay\"></div></a>");
-											out.println("<div class=\"text py-3 pb-4 px-3 text-center\">");
-											out.println("<h3><a href=\"" + 123 + "\">" + l.get("product_name") + "</a></h3>");
-											out.println(
-													"<div class=\"d-flex\"><div class=\"pricing\"><p class=\"price\"><span class=\"price-sale\">"
-															+ l.get("brand") + "</span></p></div></div>");
-											out.println("<div class=\"bottom-area d-flex px-3\">");
-											out.println("</div></div></div></div>");
-										}
-									} else {
-										List<HashMap<String, String>> list = itemDAO.getFoodbrandList(Integer.parseInt(pageNumber), pageBrand);
-										for (HashMap<String, String> l : list) {
-											out.println("<div class=\"col-md-6 col-lg-3 ftco-animate\">");
-											out.println("<div class=\"product\">");
-											out.println("<a href=\"./itemdetail.jsp?itemid=" + String.valueOf(l.get("product_id"))
-													+ "\" class=\"img-prod\"><img class=\"img-fluid\" src=\"../img/" + l.get("filename")
-													+ "\" alt=\"Colorlib Template\"><div class=\"overlay\"></div></a>");
-											out.println("<div class=\"text py-3 pb-4 px-3 text-center\">");
-											out.println("<h3><a href=\"" + 123 + "\">" + l.get("product_name") + "</a></h3>");
-											out.println(
-													"<div class=\"d-flex\"><div class=\"pricing\"><p class=\"price\"><span class=\"price-sale\">"
-															+ l.get("brand") + "</span></p></div></div>");
-											out.println("<div class=\"bottom-area d-flex px-3\">");
-											out.println("</div></div></div></div>");
-										}
-									}
-								%>
-							</div>
-							<div class="row mt-5">
-								<div class="col text-center">
-									<div class="block-27">
-										<ul>
-											<%
-												if (pageBrand.equals("All")) {
-											%>
-											<%
-												int startPage = (Integer.parseInt(pageNumber) / 5) * 5 + 1;
-													if (Integer.parseInt(pageNumber) % 5 == 0)
-														startPage -= 5;
-													if (startPage != 1) {
-											%>
-											<li><a
-												href="age.jsp?pageNumber=<%=startPage - 1%>&brand=All">&lt;</a></li>
-											<%
-												} else {
-														if (Integer.parseInt(pageNumber) != 1) {
-											%>
-											<li><a
-												href="age.jsp?pageNumber=<%=Integer.parseInt(pageNumber) - 1%>&brand=All">&lt;</a></li>
-											<%
-												} else {
-											%>
-											<li><a href="age.jsp?pageNumber=1&brand=All">&lt;</a></li>
-											<%
-												}
-													}
-													for (int i = startPage; i < startPage + 5; i++) {
-														if (i == Integer.parseInt(pageNumber)) {
-											%>
-											<li class="active"><span><%=i%></span></li>
-											<%
-												} else {
-											%>
-											<li><a href="age.jsp?pageNumber=<%=i%>&brand=All"><%=i%></a></li>
-											<%
-												}
-														if (!itemDAO.nextPage(Integer.parseInt(pageNumber)) && i == itemDAO.targetPage() % 5)
-															break;
-													}
-													if (Integer.parseInt(pageNumber) == itemDAO.targetPage()) {
-											%>
-											<li><a
-												href="age.jsp?pageNumber=<%=Integer.parseInt(pageNumber)%>&brand=All">&gt;</a></li>
-											<%
-												} else {
-											%>
-											<li><a
-												href="age.jsp?pageNumber=<%=Integer.parseInt(pageNumber) + 1%>&brand=All">&gt;</a></li>
-											<%
-												}
-											%>
-											<%
-												} else {
-											%>
-											<%
-												int startPage = (Integer.parseInt(pageNumber) / 5) * 5 + 1;
-													if (Integer.parseInt(pageNumber) % 5 == 0)
-														startPage -= 5;
-													if (startPage != 1) {
-											%>
-											<li><a
-												href="age.jsp?pageNumber=<%=startPage - 1%>&brand=<%=pageBrand%>">&lt;</a></li>
-											<%
-												} else {
-														if (Integer.parseInt(pageNumber) != 1) {
-											%>
-											<li><a
-												href="age.jsp?pageNumber=<%=Integer.parseInt(pageNumber) - 1%>&brand=<%=pageBrand%>">&lt;</a></li>
-											<%
-												} else {
-											%>
-											<li><a href="age.jsp?pageNumber=1&brand=<%=pageBrand%>">&lt;</a></li>
-											<%
-												}
-													}
-													for (int i = startPage; i < startPage + 5; i++) {
-														if (i == Integer.parseInt(pageNumber)) {
-											%>
-											<li class="active"><span><%=i%></span></li>
-											<%
-												} else {
-											%>
-											<li><a
-												href="age.jsp?pageNumber=<%=i%>&brand=<%=pageBrand%>"><%=i%></a></li>
-											<%
-												}
-														if (!itemDAO.nextPage_brand(Integer.parseInt(pageNumber), pageBrand)
-																&& i == itemDAO.targetPage_brand(pageBrand) % 5)
-															break;
-													}
-													if (Integer.parseInt(pageNumber) == itemDAO.targetPage_brand(pageBrand)) {
-											%>
-											<li><a
-												href="age.jsp?pageNumber=<%=Integer.parseInt(pageNumber)%>&brand=<%=pageBrand%>">&gt;</a></li>
-											<%
-												} else {
-											%>
-											<li><a
-												href="age.jsp?pageNumber=<%=Integer.parseInt(pageNumber) + 1%>&brand=<%=pageBrand%>">&gt;</a></li>
-											<%
-												}
-											%>
-											<%
-												}
-											%>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-					</section>
-
-				</div>
-			</div>
-
-		</div>
-
-	</section>
-
-
-
-	<!-- footer 시작 -->
+    	</div>
+    </section>
+    
+		   <!-- footer 시작 -->
 
    <section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
       <div class="container py-4">
@@ -627,7 +472,7 @@
             stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
    </div>
 
-
+   <script src="./star.js"></script>
    <script src="../js/jquery.min.js"></script>
    <script src="../js/jquery-migrate-3.0.1.min.js"></script>
    <script src="../js/popper.min.js"></script>

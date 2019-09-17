@@ -12,7 +12,7 @@ public class MemberBean{
 	private float baby_weight;
 	private int skinproblem;
 	private String allergy[];
-	
+	private String realallergy;
 	
 	
 	public String getMemId() {
@@ -103,5 +103,12 @@ public class MemberBean{
 	public void setSkinproblem(String skinproblem) {
 		int to = Integer.parseInt(skinproblem);
 		this.skinproblem = to;
+	}
+	
+	public String getrealAllergy() {
+		return realallergy;
+	}
+	public void setrealAllergy(String realallergy) {
+		this.realallergy = realallergy;
 	}
 }
