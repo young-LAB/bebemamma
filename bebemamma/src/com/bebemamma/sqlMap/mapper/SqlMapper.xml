@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="SqlMapper">
+    
+    <select id="getItemNum"  resultType="int">
+     
+       SELECT
+            count(*)
+       FROM
+            babymeal
+     
+    </select>
+    
+    <select id="getItemNum_brand" parameterType="String"  resultType="int">
+     
+       SELECT
+            count(*)
+       FROM
+            babymeal
+       WHERE
+       		brand = #{brand};
+     
+    </select>
+    
+    <select id="getFoodList"  parameterType="int" resultType="hashmap">
+     
+       SELECT
+            product_id, product_name, brand, filename, ingredient  
+       FROM
+            babymeal
+       WHERE
+        	product_id between 12*(#{id}-1)+1 AND 12*#{id}
+       ORDER BY 
+       		product_id;
+     
+    </select>
+    
+    <select id="getFoodList_brand"  parameterType="hashmap" resultType="hashmap">
+     
+       SELECT
+            product_id, product_name, brand, filename, ingredient  
+       FROM
+            babymeal
+       WHERE        	
+        	brand = #{pagebrand}
+       ORDER BY 
+       		product_id
+       LIMIT
+       		${id}, 12;
+       		
+    </select>
+    
+    <select id="foodinfo_from_id"  parameterType="int" resultType="hashmap">
+     
+       SELECT
+            product_id, product_name, brand, filename, ingredient, month  
+       FROM
+            babymeal
+       WHERE        	
+        	product_id = #{itemid}
+       		
+    </select>
+    
+    <select id="foodinfo_from_month"  parameterType="String" resultType="int">
+     
+       SELECT
+            product_id  
+       FROM
+            babymeal
+       WHERE        	
+        	month = #{item_month}
+       		
+    </select>
+ 	
+ 	<select id="check_pw"  parameterType="String" resultType="String">
+     
+       SELECT
+            password  
+       FROM
+            meminfo
+       WHERE        	
+        	mem_id = #{UserID};
+       		
+    </select>
+    
+    <select id="get_num_fromid"  parameterType="String" resultType="int">
+     
+       SELECT
+            mem_num  
+       FROM
+            meminfo
+       WHERE        	
+        	mem_id = #{UserID};
+       		
+    </select>
+    
+    <select id="check_id"  parameterType="String" resultType="String">
+     
+       SELECT
+            mem_id 
+       FROM
+            meminfo
+       WHERE        	
+        	mem_id = #{id};
+       		
+    </select>
+    
+    <select id="check_allegy"  parameterType="String" resultType="String">
+     
+       SELECT
+            allergy 
+       FROM
+            meminfo
+       WHERE        	
+        	mem_id = #{id};
+       		
+    </select>
+    
+    <insert id="member_insert" parameterType="bebemamma.MemberBean">
+ 	
+ 		insert into meminfo(mem_id, password, mem_name, mem_gender, baby_name, baby_gender, baby_month, baby_height, baby_weight, skinproblem, allergy)
+ 		values(#{mem_id}, #{password}, #{mem_name}, #{mem_gender}, #{baby_name}, #{baby_gender}, #{baby_month}, #{baby_height}, #{baby_weight}, #{skinproblem}, #{realallergy})
+			
+ 	</insert>
+ 
+</mapper>

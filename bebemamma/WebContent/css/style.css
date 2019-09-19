@@ -8396,7 +8396,9 @@ h1, h2, h3, h4, h5,
           color: #fff;
           line-height: 1.3;
           font-weight: 400;
-          font-family: "Amatic SC", cursive; }
+          font-family: "Amatic SC", cursive;}
+          /*font-family: 'Nanum Myeongjo', serif;}*/
+          /*  font-family: "Amatic SC", cursive, 'Black Han Sans', sans-serif;} */
           @media (max-width: 767.98px) {
             .owl-carousel.home-slider .slider-item .slider-text h1 {
               font-size: 40px; } }
@@ -9318,7 +9320,7 @@ textarea.form-control {
     line-height: 1.3;
     position: relative;
     margin: 0 auto;
-    width: 100px;
+    width: 200px;
     height: 100px;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -9330,6 +9332,7 @@ textarea.form-control {
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease; }
     .ftco-services .services .icon:after {
+      text-align:center;
       position: absolute;
       top: 10px;
       left: 10px;

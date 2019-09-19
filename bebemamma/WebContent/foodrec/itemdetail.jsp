@@ -183,6 +183,7 @@
    </nav>
    <!-- END nav -->
 	<%
+	String FilePath = request.getSession().getServletContext().getRealPath("/").toString() +"foodrec\\item.csv";
   	ItemDAO itemDAO = new ItemDAO();
   	String itemid = "1";
   	if(request.getParameter("itemid") != null){
@@ -215,10 +216,10 @@
 
 
 						<div class="page-header mt-1">
-							<h2>리뷰 및 Q&A 게시판</h2>
+							<h2>제품 상세 정보</h2>
 						</div>
 
-						<p class="lead">제품에 대한 리뷰나 기타 궁금한 사항을 공유해보아요</p>
+						<p class="lead">제품명, 브랜드, 재료, 알레르기 정보</p>
 						<hr>
 					</div>
 				</div>
@@ -234,6 +235,7 @@
 					<h3><%=map.get("product_name")%></h3>
 					<div class="rating d-flex">
 						<%
+							//UserRecommend usr = new UserRecommend(FilePath);
 							UserRecommend usr = new UserRecommend();
 							int realid = mgr.get_Idnum(session.getAttribute("id").toString());
 							int realitem = Integer.parseInt(map.get("product_id").toString());
@@ -295,7 +297,7 @@
 					<%
 					}else{
 				%>
-					<p class="price"><span>알레르기 없다.</span></p>
+					<p class="price"><span>해당하는 알레르기가 없습니다.</span></p>
 					<%
 					}
 				%>

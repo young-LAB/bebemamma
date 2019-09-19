@@ -9,10 +9,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@include file="../include/header.jsp"%>
-	<!--<%=session.getAttribute("id") %>님 안녕하세요.  -->
-	
-	<div class="wrap">
+   <%@include file="../include/header.jsp"%>
+   <!--<%=session.getAttribute("id") %>님 안녕하세요.  -->
+   
+   <div class="wrap">
         <div class="container">
 
           <div class="main_intro">
@@ -21,7 +21,7 @@
             </h2>
             <div class="in_main" style="text-align: center;">
               <p class="f_text">
-                	아이를 위한 엄마의 음식, 베베 맘마<br>
+                   아이를 위한 엄마의 음식, 베베 맘마<br>
               </p>
             </div>
 
@@ -30,13 +30,13 @@
           <div class="info_feature_1">
             <div class="inner">
               <p class="category">
-                	유아식 추천
+                   유아식 추천
               </p>
               <em class="sub_title">
-               	 오늘은 어떤 것을 먹일까?
+                   오늘은 어떤 것을 먹일까?
               </em>
               <p class="detail">
-                	다양한 유아식들을 추천!
+                   다양한 유아식들을 추천!
               </p>
 
             </div>

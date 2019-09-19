@@ -96,7 +96,7 @@ html, body {
     
     .f_text{
       display: block;
-	  color : black;
+     color : black;
       background-image: url("image/@screen/img_0.svg");
       background-repeat: no-repeat;
       background-position: center center;
@@ -252,5 +252,4 @@ html, body {
         color: #ccc;
         font-size: 12px;
     }
-
 

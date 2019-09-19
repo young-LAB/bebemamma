@@ -184,6 +184,7 @@
   	int ct = itemDAO.getNumber();
   	String pageNumber = "1";
   	String pageBrand = "All";
+  	//String FilePath = request.getSession().getServletContext().getRealPath("/").toString() +"foodrec\\item.csv" + "";
   	HashMap<String, Object> result = new HashMap<String, Object>();
   	if(request.getParameter("pageNumber") != null){
   		pageNumber = request.getParameter("pageNumber");
@@ -193,7 +194,8 @@
   	}
 
   	if((String)session.getAttribute("id")==null){
-  		result = itemDAO.get_RecoItem(1);	
+  		//result = itemDAO.get_RecoItem(1, FilePath);
+  		result = itemDAO.get_RecoItem(1);
   	}
   	else{
   		String stri = session.getAttribute("id").toString();
@@ -228,7 +230,17 @@
 
 
 					<div class="page-header mt-1">
-						<h2>id님을 위한 맞춤 추천 이유식</h2>
+					<%
+					if((String)session.getAttribute("id") == null){ 
+					%>
+						<h2> 안녕하세요! </h2>
+					<%
+						}else{
+					%>
+						<h2><%=session.getAttribute("id").toString() %>님을 위한 맞춤 추천 이유식</h2>
+					<%
+						}
+					%>
 					</div>
 
 					<p class="lead">회원님이 선택한 상품을 바탕으로 추천된 아이템입니다.</p>

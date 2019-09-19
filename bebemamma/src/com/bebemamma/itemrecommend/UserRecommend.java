@@ -4,12 +4,13 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.mahout.cf.taste.impl.common.FastIDSet;
 import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
 import org.apache.mahout.cf.taste.impl.neighborhood.NearestNUserNeighborhood;
 import org.apache.mahout.cf.taste.impl.recommender.GenericUserBasedRecommender;
@@ -24,22 +25,24 @@ import org.apache.mahout.common.iterator.FileLineIterable;
 public class UserRecommend {
 	/* 추후 함수형으로 바꿀 것임 */
 	DataModel model = null;
-    
+    //String filepath ="";
     
 	public UserRecommend() throws Exception {
 		
 	}
 	
 	public HashMap reco_item(int id) throws Exception {
+		//Path currentPath = Paths.get("");
+		//String filePath = currentPath.toAbsolutePath().toString() + "/item.csv";
+		//String filePath = System.getProperty("user.dir") + "/item.csv";
+		//System.out.println(filePath);
 		HashMap<Integer, Object> list = new HashMap<Integer, Object>();
 		this.model = new FileDataModel(new File("C:/Users/김주완/Desktop/bebemamma/bebemamma/bebemamma/data/item.csv"));
 		if(!this.checkID(id)) {
 			this.setData(id, 1, 3);
-			this.model = new FileDataModel(new File("C:/Users/김주완/Desktop/bebemamma/bebemamma/bebemamma/data/item.csv"));
+			this.model = new FileDataModel(new File("f"));
 		}
-		else {
-			System.out.println("pass");
-		}
+		
 		
 		/* 유사도 측정 모델 생성 - 피어슨 계수 */
 		UserSimilarity similarity = new PearsonCorrelationSimilarity(this.model);

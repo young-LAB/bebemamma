@@ -8,22 +8,22 @@
 <link href="./signup.css" rel="stylesheet" type="text/css"> 
 <script type="text/javascript" src="./script.js"></script>
 <script type="text/javascript">
-	function idCheck(id){
-		frm = document.regForm;
-		if(id == ""){
-			alert("아이디를 입력해 주세요.");
-			frm.id.focus();
-			return ;
-		}
-		url = "idCheck.jsp?id=" + id;
-		window
-		.open(url, "IDCHECK", "width=300,height=150");
-	}
+   function idCheck(id){
+      frm = document.regForm;
+      if(id == ""){
+         alert("아이디를 입력해 주세요.");
+         frm.id.focus();
+         return ;
+      }
+      url = "idCheck.jsp?id=" + id;
+      window
+      .open(url, "IDCHECK", "width=300,height=150");
+   }
 </script>
 </head>
 <body onLoad="regFrm.id.focus()">
 <%@include file="../include/header.jsp"%>
-<form name = "regForm" action="signup_action.jsp" method="post">
+<form name = "regFrm" action="signup_action.jsp" method="post">
     <fieldset>
 
       <h1 id="signup">회원가입</h1>
@@ -62,8 +62,8 @@
         <input class="ch" type="checkbox" name="allergy" value="계란" />계란
         <input class="ch" type="checkbox" name="allergy" value="복숭아" />복숭아
         <input class="ch" type="checkbox" name="allergy" value="갑각류" />갑각류
-        <input class="ch" type="checkbox" name="allergy" value="우유" />우유 
-       	<input class="ch" type="checkbox"/>기타 <input class="tx" type="text" name="allergy" placeholder="알레르기를 입력해주세요." />
+        <input class="ch" type="checkbox" name="allergy" value="우유" />우유  
+          <input class="ch" type="checkbox"/>기타 <input class="tx" type="text" name="allergy" placeholder="알레르기를 입력해주세요." />
       </p>
 
       <p><button onclick="inputcheck()"/>완료!</p>

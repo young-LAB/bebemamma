@@ -1,52 +1,421 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+   pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+
 <html>
+
+<!-- header 시작 -->
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
-	<link rel="stylesheet" href="./ingre.css" />
+<title>사용자 맞춤형 식품 공유 플랫폼, 베베맘마</title>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="./ingre.css" rel="stylesheet" type="text/css">
 
-	<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<link
+   href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
+   rel="stylesheet">
+<link
+   href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap"
+   rel="stylesheet">
+<link
+   href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap"
+   rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Jua|Nanum+Gothic&display=swap&subset=korean" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Nanum+Myeongjo&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/open-iconic-bootstrap.min.css">
+
+<link rel="stylesheet" href="../css/animate.css">
+
+<link rel="stylesheet" href="../css/owl.carousel.min.css">
+<link rel="stylesheet" href="../css/owl.theme.default.min.css">
+<link rel="stylesheet" href="../css/magnific-popup.css">
+
+<link rel="stylesheet" href="../css/aos.css">
+
+<link rel="stylesheet" href="../css/ionicons.min.css">
+
+<link rel="stylesheet" href="../css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="../css/jquery.timepicker.css">
+
+
+<link rel="stylesheet" href="../css/flaticon.css">
+
+<!--additional item add (intro page icons) -->
+<link rel="stylesheet" href="../fonts/flaticon/font/flaticon.css">
+
+
+<link rel="stylesheet" href="../css/icomoon.css">
+<link rel="stylesheet" href="../css/style.css">
+
+<link rel="stylesheet" href="../css/custom.css">
+
 </head>
-<body>
-<%@include file="../include/header.jsp"%>
+<body class="goto-here">
+   <div class="py-1 bg-primary">
+      <div class="container">
+         <div
+            class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+            <div class="col-lg-12 d-block">
+               <div class="row d-flex">
+                  <div class="col-md pr-4 d-flex topper align-items-center">
+                     <div
+                        class="icon mr-2 d-flex justify-content-center align-items-center">
+                        <span class="icon-paper-plane"></span>
+                     </div>
+                     <% if((String)session.getAttribute("id") == null){ %>
+                     <span class="text">로그인 되어있지 않음</span>
+                     <% }else{ %>
+                     <span class="text"><strong><%=(String)session.getAttribute("id")%>님 안녕하세요!</strong></span>
+                     <% } %>
+                  </div>
+                  <div
+                     class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
+                     <span class="text"><strong>당신의 아이를 위한 이유식정보 제공 &amp; 추천</strong></span>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 
-<table>
-      <h3>전체 영양소 정보</h3>
-	<tr>
-	    <td><input type="checkbox" name="chk_info" value="감자">감자</td>
-	    <td><input type="checkbox" name="chk_info" value="흰살생선">흰살생선</td>
-      <td><input type="checkbox" name="chk_info" value="닭고기">닭고기</td>
-	</tr>
-	<tr>
-	    <td><input type="checkbox" name="chk_info" value="고구마">고구마</td>
-	    <td><input type="checkbox" name="chk_info" value="버섯류">버섯류</td>
-      <td><input type="checkbox" name="chk_info" value="어패류">어패류</td>
-	</tr>
-  <tr>
-    <td><input type="checkbox" name="chk_info" value="쇠고기">쇠고기</td>
-    <td><input type="checkbox" name="chk_info" value="미역">미역</td>
-    <td><input type="checkbox" name="chk_info" value="시금">시금치</td>
-  </tr>
-    </table>
 
-    <h3>선택한 재료의 영양소</h3>
-	<div>
-	    <svg id="myGraph"></svg>
-	    <br>
-	    <canvas style = "background-color: #00bcd4;" id="cv"></canvas><span>열량</span>
-	    <canvas style = "background-color: #FF9800;" id="cv"></canvas><span>단백질</span>
-	    <canvas style = "background-color: #673ab7d6;" id="cv"></canvas><span>칼슘</span>
-	    <canvas style = "background-color: #e84c81;" id="cv"></canvas><span>철분</span>
-	    <canvas style = "background-color: #8bc34a;" id="cv"></canvas><span>비타민C</span>
-	</div>
+   <!-- header 끝 -->
 
-      <button onClick="window.location.reload()">새로고침</button>
+   <nav
+      class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
+      id="ftco-navbar">
+      <div class="container">
+         <a class="navbar-brand" href="./intro.jsp">BEBEMAMMA</a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#ftco-nav" aria-controls="ftco-nav"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+         </button>
 
-    <script src="./ingre.js"></script>
-<br>
-<%@include file="../include/footer.jsp"%>
-</body>
+
+         <% if((String)session.getAttribute("id") == null){ %>
+         <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+            <!-- 화면 두개의 필요성 있음 -->
+               <li class="nav-item active"><a href="./intro.jsp"
+                  class="nav-link">Home</a></li>
+               <li class="nav-item"><a href="../intro/about.jsp" class="nav-link">사이트 소개</a></li>
+               <li class="nav-item"><button class="nav-link"><a href="../intro/reallogin.jsp">로그인</a></button></li>
+
+            </ul>
+         </div>
+
+         <% }else{ %>
+
+         <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+               <li class="nav-item active">
+                  <a href="./intro./intro.jsp" class="nav-link" >Home</a>
+               </li>
+               <li class="nav-item">
+                  <a href="../intro/about.jsp" class="nav-link">사이트 소개</a>
+               </li>
+               <li class="nav-item dropdown"><a
+                  class="nav-link dropdown-toggle" href="#" id="dropdown04"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">우리아이 이유식</a>
+                  <div class="dropdown-menu" aria-labelledby="dropdown04">
+                     <a class="dropdown-item" href="../foodrec/guide.html">아기 연령대별 섭취 가이드</a> 
+                     <a class="dropdown-item" href="../foodrec/age.jsp">이유식 리스트</a> 
+                     <a  class="dropdown-item" href="../foodrec/ingre.jsp">필수 14개의 이유식 성분 시각화</a> 
+                     <a class="dropdown-item" href="../foodrec/awarefood.jsp">가족력에 따른 주의, 권장 식품(재료)</a> 
+                  </div>
+               </li>
+
+               <li class="nav-item"><a href="../bbs/bbs.jsp" class="nav-link">베베맘마 톡톡</a></li>
+               <li class="nav-item"><a href="../mypage/mypage.jsp" class="nav-link">마이페이지</a></li>
+               <li class="nav-item"><button href="./logout.jsp" class="nav-link">로그아웃</button></li>
+
+            </ul>
+         </div>
+            <% } %>
+
+
+      </div>
+   </nav>
+   <!-- END nav -->
+
+
+
+
+        
+        
+<section class="ftco-section ftco-no-pt ftco-no-pb py-5">
+      <div class="container py-4">
+         <div class="row d-flex justify-content-center py-5">
+            <div class="col-md-10">
+            
+            <div class="page-header mt-1">
+            <h2>선택한 이유식의 영양소</h2>
+        </div>
+
+        <p class="lead">아기에게 꼭 먹어야 할 필수 이유식의 성분을 확인해보아요</p>
+        <hr>
+            <div class="col-md-12 d-flex ftco-animate">
+                  <div class="blog-entry align-self-stretch d-md-flex">
+                     <a>
+                               <form>
+    <select id="food">
+      <option value="배숙">배숙</option>
+      <option value="사과숙">사과숙</option>
+      <option value="과일푸딩">과일푸딩</option>
+      <option value="당근죽">당근죽</option>
+      <option value="과일죽">과일죽</option>
+      <option value="빵죽">빵죽</option>
+      <option value="계란죽">계란죽</option>
+      <option value="소간죽">소간죽</option>
+      <option value="생선죽">생선죽</option>
+      <option value="밤,바나나죽">밤,바나나죽</option>
+      <option value="전통죽">전통죽</option>
+      <option value="당근시금치죽">당근시금치죽</option>
+      <option value="달걀쇠고기죽">달걀쇠고기죽</option>
+      <option value="닭죽">닭죽</option>
+    </select>
+  </form>
+  
+  
+  <div id="food">
+    <svg id="myGraph"></svg>
+    <br>
+    <canvas style="background-color: #00bcd4;" id="cv"></canvas><span>탄수화물(g)</span>
+    <canvas style="background-color: #FF9800;" id="cv"></canvas><span>단백질(g)</span>
+    <canvas style="background-color: #ffeb3b;" id="cv"></canvas><span>지방(g)</span>
+    <br>
+    <canvas style="background-color: #673ab7d6;" id="cv"></canvas><span>칼슘(mg)</span>
+    <canvas style="background-color: #e84c81;" id="cv"></canvas><span>철분(mg)</span>
+    <canvas style="background-color: #8bc34a;" id="cv"></canvas><span>비타민C(mg)</span>
+  </div>
+    
+                         </a>
+      
+                     <div class="text d-block pl-md-4">
+                     
+                        <div class="meta mb-3">
+                        
+                           <div>
+                           
+                           <p></p>
+                              <a href="#">2019년 9월 4일 최종 업데이트</a>
+                           </div>
+
+                           <div>
+                              <a href="#" class="meta-chat"><span class="icon-chat"></span>
+                              </a>
+                           </div>
+                        </div>
+                        <h3 class="heading">
+                           <a
+                              href="https://inuri.soaworld.com/472">
+                              아이가 꼭 먹어야 할 14가지 음식</a>
+                        </h3>
+                        <p></p>
+                        <p>‘아이가 꼭 먹어야할 14가지 음식’은 비만에 걸리게 하지 않고 아이들에게 충분한 영양을 제공하기 위해 고민하는 부모들에게 적절한 정보를 제공해준다.
+                        이 정보를 통해 집에서 쉽게 만들 수 있는 이유식에 포함된 성분을 확인하고 아이에게 필요한 성분의 이유식을 먹일 수 있다.
+
+</p>
+
+<p>
+              <strong>   베베맘마 Tips. 아기에게 꼭 필요한 영양소를 갖춘 필수 14가지 이유식을 먹이세요
+               아이한테 부족하다고 생각하는 영양소를 왼쪽 시각화 도표에서 확인하세요 </strong>
+               </p>
+                        <p>
+                           <a
+                              href="https://inuri.soaworld.com/472"
+                              class="btn btn-primary py-2 px-3">더 많은 정보를 얻고 싶다면 클릭하세요</a>
+                        </p>
+                         
+                     </div>
+                     
+                  </div>
+                  
+               </div>
+            
+            
+  <img src="../img/image_4.jpg">
+   <script src="./ingre.js"></script>
+               
+  
+            </div>
+      
+            <p>
+            <br />
+               요리하며 신난 어머니의 모습에 아이도 무의식적으로 감동을 합니다.
+  
+             
+               </p>
+            </div>
+         </div>
+      
+   </section>
+
+  
+
+    <!-- footer 시작 -->
+
+   <section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
+      <div class="container py-4">
+         <div class="row d-flex justify-content-center py-5">
+            <div class="col-md-6">
+               <h2 style="font-size: 22px;" class="mb-0">아기 이유식에 대한 최신 정보를 받고 싶으면</h2>
+               <h2 style="font-size: 22px;" class="mb-0">구독할 이메일을 오른쪽 칸에 기재해주세요~</h2>
+               <span>Get e-mail updates about our latest news</span>
+            </div>
+            <div class="col-md-6 d-flex align-items-center">
+               <form action="#" class="subscribe-form">
+                  <div class="form-group d-flex">
+                     <input type="text" class="form-control"
+                        placeholder="Enter email address"> <input type="submit"
+                        value="Subscribe" class="submit px-3">
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </section>
+   <footer class="ftco-footer ftco-section">
+      <div class="container">
+         <div class="row">
+            <div class="mouse">
+               <a href="#" class="mouse-icon">
+                  <div class="mouse-wheel">
+                     <span class="ion-ios-arrow-up"></span>
+                  </div>
+               </a>
+            </div>
+         </div>
+         <div class="row mb-5">
+            <div class="col-md">
+               <div class="ftco-footer-widget mb-4">
+                  <h2 class="ftco-heading-2">베베맘마</h2>
+                  <p>Bebemamma always think about baby with mom's heart</p>
+                  <ul
+                     class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+
+                     <li class="ftco-animate">
+                     <a href="https://www.facebook.com/Bebemamma-106180030764796/?modal=admin_todo_tour">
+                     <span class="fa fa-twitter"></span></a>
+                     </li>
+                     <li class="ftco-animate">
+                     <a href="https://www.facebook.com/Bebemamma-106180030764796/?modal=admin_todo_tour">
+                     <span class="fa fa-facebook-official"></span></a>
+                     </li>
+
+                     <li class="ftco-animate"><a href="#">
+                     <span class="fa fa-instagram"></span></a></li>
+                  </ul>
+               </div>
+            </div>
+            <div class="col-md">
+               <div class="ftco-footer-widget mb-4 ml-md-5">
+                  <h2 class="ftco-heading-2">Menu</h2>
+                  <ul class="list-unstyled">
+                     <li><a href="./intro.jsp" class="py-2 d-block">Home</a></li>
+                     <li><a href="./about.jsp" class="py-2 d-block">About</a></li>
+                     <li><a href="./" class="py-2 d-block">Baby Food</a></li>
+                     <li><a href="./" class="py-2 d-block">Contact Us(Journal)</a></li>
+                  </ul>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="ftco-footer-widget mb-4">
+                  <h2 class="ftco-heading-2">Help</h2>
+                  <div class="d-flex">
+                     <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
+                        <li><a href="#" class="py-2 d-block">Recommendation Information</a></li>
+                        <li><a href="#" class="py-2 d-block">Essential 14 Baby Food Products</a></li>
+                        <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
+                        <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
+                     </ul>
+                     <ul class="list-unstyled">
+                        <li><a href="#" class="py-2 d-block">FAQs</a></li>
+                        <li><a href="#" class="py-2 d-block">Contact</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md">
+               <div class="ftco-footer-widget mb-4">
+                  <h2 class="ftco-heading-2">혹시 불편한 사항이 있으신가요?</h2>
+                  <div class="block-23 mb-3">
+                     <ul>
+                        <li><span class="icon icon-map-marker"></span><span
+                           class="text">31253) 충청남도 천안시 창업지원센터 Inframince</span></li>
+                        <li><a href="#"><span class="icon icon-phone"></span><span
+                              class="text">Tel. 041-560-1114</span></a></li>
+                        <li><a href="#"><span class="icon icon-envelope"></span><span
+                              class="text">bebemamma.forbaby@gmail.com</span></a></li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-12 text-center">
+
+               <p>
+                  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                  Copyright &copy;
+                  <script>
+                     document.write(new Date().getFullYear());
+                  </script>
+                  All rights reserved | Bebemamma <i
+                     class="icon-heart color-danger" aria-hidden="true"></i> by <a
+                     href="https://colorlib.com" target="_blank">inframince</a>
+                  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+               </p>
+            </div>
+         </div>
+      </div>
+   </footer>
+
+
+
+   <!-- loader -->
+   <div id="ftco-loader" class="show fullscreen">
+      <svg class="circular" width="48px" height="48px">
+      <circle class="path-bg" cx="24" cy="24" r="22" fill="none"
+            stroke-width="4" stroke="#eeeeee" />
+      <circle class="path" cx="24" cy="24" r="22" fill="none"
+            stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
+   </div>
+
+
+   <script src="../js/jquery.min.js"></script>
+   <script src="../js/jquery-migrate-3.0.1.min.js"></script>
+   <script src="../js/popper.min.js"></script>
+   <script src="../js/bootstrap.min.js"></script>
+   <script src="../js/jquery.easing.1.3.js"></script>
+   <script src="../js/jquery.waypoints.min.js"></script>
+   <script src="../js/jquery.stellar.min.js"></script>
+   <script src="../js/owl.carousel.min.js"></script>
+   <script src="../js/jquery.magnific-popup.min.js"></script>
+   <script src="../js/aos.js"></script>
+   <script src="../js/jquery.animateNumber.min.js"></script>
+   <script src="../js/bootstrap-datepicker.js"></script>
+   <script src="../js/scrollax.min.js"></script>
+   <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+   <script src="../js/google-map.js"></script>
+   <script src="../js/main.js"></script>
+
+   <!-- footer 끝 -->
+
+
+  </body>
 </html>

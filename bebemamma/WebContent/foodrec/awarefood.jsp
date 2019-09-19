@@ -9,6 +9,7 @@
 <title>사용자 맞춤형 식품 공유 플랫폼, 베베맘마</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="./awarefood.css" />
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -22,7 +23,7 @@
 <link
    href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap"
    rel="stylesheet">
-   
+
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean" rel="stylesheet">
 
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap" rel="stylesheet">
@@ -59,9 +60,12 @@
 <link rel="stylesheet" href="../css/custom.css">
 
 
+
 <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
   <script>
     function calc(){
+       var image = document.getElementById("state_img");
+       
       if(weight.value != "" && height.value != ""){
         document.getElementById("result").value = (weight.value * 1)/((height.value * 1 )*(height.value * 1 )) * 10000;
         }
@@ -73,25 +77,34 @@
         if((age.value * 1) <= 12){
           if((result.value * 1) <= 15){
             document.getElementById("state").value = "영양불량";
+            image.src = "../img/Starvation.png"; 
           }else if((result.value * 1) >15 && (result.value * 1) <=18){
             document.getElementById("state").value = "정상";
+            image.src = "../img/Normal.png";
           }else if((result.value * 1) >18 && (result.value * 1) <= 20){
             document.getElementById("state").value = "비만경향";
+            image.src = "../img/Overweight.png";
           }else if((result.value * 1) >=20){
             document.getElementById("state").value = "비만";
+            image.src = "../img/Obese.png";
           }
         }
         else if((age.value * 1) > 12 && (age.value * 1) <= 24){
           if((result.value * 1) <= 13){
-            document.getElementById("state").value = "Starvation";
+            document.getElementById("state").value = "영양불량";
+            image.src = "../img/Starvation.png"; 
           }else if((result.value * 1) >13 && (result.value * 1) <=15){
-            document.getElementById("state").value = "UnderWeight";
+            document.getElementById("state").value = "저체중";
+            image.src = "../img/UnderWeight.png";
           }else if((result.value * 1) >15 && (result.value * 1) <= 18){
-            document.getElementById("state").value = "Normal";
+            document.getElementById("state").value = "정상";
+            image.src = "../img/Normal.png";
           }else if((result.value * 1) >18 && (result.value * 1) <= 20){
-              document.getElementById("state").value = "Overweight";
+              document.getElementById("state").value = "비만경향";
+              image.src = "../img/Overweight.png";
           }else if((result.value * 1) >=20){
-            document.getElementById("state").value = "Obese";
+            document.getElementById("state").value = "비만";
+            image.src = "../img/Obese.png";
           }
         }
       }else{
@@ -128,8 +141,8 @@
          </div>
       </div>
    </div>
-   
-   
+
+
    <!-- header 끝 -->
 
    <nav
@@ -152,12 +165,12 @@
                   class="nav-link">Home</a></li>
                <li class="nav-item"><a href="about.jsp" class="nav-link">사이트 소개</a></li>
                <li class="nav-item"><button class="nav-link"><a href="./reallogin.jsp">로그인</a></button></li>
-            
+
             </ul>
          </div>
-         
+
          <% }else{ %>
-         
+
          <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                <li class="nav-item active">
@@ -174,22 +187,140 @@
                      <a class="dropdown-item" href="../foodrec/age.jsp">이유식 리스트</a> 
                      <a  class="dropdown-item" href="../foodrec/ingre.jsp">필수 14개의 이유식 성분 시각화</a> 
                      <a class="dropdown-item" href="../foodrec/awarefood.jsp">가족력에 따른 주의, 권장 식품(재료)</a> 
-                  </div>
+                </div>
                </li>
                
-               <li class="nav-item"><a href="../bbs/bbs.jsp" class="nav-link">베베맘마 톡톡</a></li>
+               <li class="nav-item dropdown"><a
+                  class="nav-link dropdown-toggle" href="#" id="dropdown04"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">베베맘마 톡톡</a>
+               <div class="dropdown-menu" aria-labelledby="dropdown04">
+                     <a class="dropdown-item" href="../bbs/bbs.jsp">리뷰 및 Q&A 게시판</a> 
+                     <a class="dropdown-item" href="../qna/consultant.jsp">이유식 전문가가 말한다!</a>
+                     <a class="dropdown-item" href="../qna/FAQs.jsp">FAQs</a>
+               </div>
                <li class="nav-item"><a href="../mypage/mypage.jsp" class="nav-link">마이페이지</a></li>
                <li class="nav-item"><button href="./logout.jsp" class="nav-link">로그아웃</button></li>
-
             </ul>
          </div>
             <% } %>
-         
-         
+
+
       </div>
    </nav>
    <!-- END nav -->
    
+   
+   <section class="ftco-section ftco-no-pt ftco-no-pb py-5">
+  <div class="container py-4">
+    <div class="row d-flex justify-content-center py-5">
+      <div class="col-md-10 ">
+
+
+        <div class="page-header mt-1">
+            <h2>카우프 지수</h2>
+        </div>
+
+        <p class="lead">아기의 카우프 지수를 통해 아이 상태를 알아보아요</p>
+        <hr />
+        <p>&nbsp;</p>
+      
+  
+        <div class="page-header mt-1" >
+          
+            <h2>1. 비만도(BMI Index)를 계산하는 방법</h2>
+        </div>
+
+        <p class="lead">
+        [부제] BMI Index : 성인의 비만도를 측정하는 지수</p>
+        <hr>
+        
+
+일반적으로 영유아들은 성장을 체크할 때 성별,연령별 집단의 신장과 체중의 분포 
+즉, 백분위수를 이용하여 판단합니다.  <br />
+<p></p>
+백분위에서 아이의 위치를 확인하여 현재 상태와 성장 방향을 예측하게 되는데요. <br></br>
+ <p></p>
+이때 동일 집단에 비교하여 95 백분위 수 이상일 때를 비만이라고 이야기합니다. <br />
+
+<p></p>
+
+<div class="alert alert-warning alert-dismissible mt-3" role="alert">
+            <code class="codeblock">[ 비만도(BMI Index) = (실제 체중 - 신장별 이상 체중) / 신장별 이상 체중 x 100 ] </code><br />
+</div>
+<p></p>
+비만도는 공식을 이용하여 계산하기도 하는데, 
+이 공식을 이용하여 계산했을 때 10% 이하일 경우에는 체중미달, <p></p>
+10%는 정상체중, 10~20%는 과체중/비만 경향, 
+20% 이상이면 비만, 30% 이상일 때를 고도비만으로 봅니다.
+
+<hr />
+        <p></p>
+        <p></p>
+
+<p>&nbsp;</p>        
+<p>&nbsp;</p>        
+
+<h4><center>이제 아기의 상태를 보기 위한 '카우프 지수'를 설명드리겠습니다.</center></h4>
+
+   <p>&nbsp;</p>
+   <p>&nbsp;</p>      
+
+        <div class="page-header mt-1">
+            <h2>2. '카우프 지수(Kaup Index)'를 계산하는 방법</h2>
+        </div>
+
+        <p class="lead">아기의 비만도를 측정하는 지수</p>
+        <hr>
+
+
+이 지수는 5세 미만의 어린이, 특히 2세 미만의 비만 판정에 많이 쓰이는 지수로 계산법은 다음과 같습니다 <br />
+
+
+
+<div class="alert alert-warning alert-dismissible mt-3" role="alert">
+            <code class="codeblock">[ 카우프지수(Kaup Index) = (체중(g) / (신장(cm) * 신장(cm))) * 10 ] </code><br />
+</div>
+
+    
+이때 체중은 그램 단위로, 신장은 센티미터 단위로 계산해야 합니다. <br />
+
+<p></p>
+
+아이가 예를 들어 12.8kg에 82cm라고 생각해봅시다. 그렇다면 체중은 12800, 신장은 82로 계산을 할 수 있습니다. <br />
+
+<p>&nbsp;</p> 
+
+
+
+<p></p>
+
+기준) <br />
+
+
+
+1세 미만 - 15이하 : 영양불량 / 15~18 : 정상 / 18~20 : 비만 경향 / 20이상 : 비만 <br />
+
+
+1세 ~ 2세 - 14이하 : 영양불량 / 14~17 : 정상 / 17~18.5 : 비만 경향 / 18.5 이상 : 비만 <br />
+
+<p>&nbsp;</p> 
+<p>&nbsp;</p> 
+
+<h4><center>직접 계산하기 복잡하시죠? 어떤 결과가 나올지 빨리 알고 싶으시죠?</center></h4>
+
+
+<h4><center>그래서 베베맘마에서 아이의 카우프 지수를 측정할 수 있는 도구를 만들었습니다.</center></h4> <br />
+
+
+<h4><center>카우프 지수에 따른 결과에 따라 아이에게 이유식을 만들어 줄 때</center></h4> <br />
+<h4><center>어떻게 할 지 참고하면 좋겠죠?</center></h4> <br />
+
+
+        <p>&nbsp;</p>        
+<p>&nbsp;</p> 
+        
+<h4><center>&lt;카우프 지수 계산 도구&gt;</center></h4> <br />
+
    <table border="1">
       <th>$</th>
       <th>현재 상태</th>
@@ -200,14 +331,22 @@
       <tr>
         <!-- 첫번째 줄 시작 -->
         <td>카우프지수</td>
-        <td><input type="text" id="state" disabled /></td>
-        <td><input type="text" id="result" disabled /></td>
+        <td style="background-color: #d0d0d0;"><img id = "state_img" style="width:100px; height:100px;" src="../img/Normal.png" alt="My Image"><br>   
+        <input style="background-color: #d0d0d0;" type="text" id="state" disabled /></td>
+        <td style="background-color: #d0d0d0;"><input style="background-color: #d0d0d0;" type="text" id="result" disabled /></td>
         <td><input type="text" id="age" onkeyup="calc()" /></td>
         <td><input type="text" id="height" onkeyup="calc()" /></td>
         <td><input type="text" id="weight" onkeyup="calc()" /></td>
       </tr>
       <!-- 첫번째 줄 끝 -->
     </table>
+
+    </div>
+  </div>
+
+      </div>
+
+</section>
    
 
 
@@ -252,7 +391,7 @@
                   <p>Bebemamma always think about baby with mom's heart</p>
                   <ul
                      class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                     
+
                      <li class="ftco-animate">
                      <a href="https://www.facebook.com/Bebemamma-106180030764796/?modal=admin_todo_tour">
                      <span class="fa fa-twitter"></span></a>
@@ -261,7 +400,7 @@
                      <a href="https://www.facebook.com/Bebemamma-106180030764796/?modal=admin_todo_tour">
                      <span class="fa fa-facebook-official"></span></a>
                      </li>
-                     
+
                      <li class="ftco-animate"><a href="#">
                      <span class="fa fa-instagram"></span></a></li>
                   </ul>
@@ -363,4 +502,4 @@
    <!-- footer 끝 -->
 
 </body>
-</html>
+</html> 
