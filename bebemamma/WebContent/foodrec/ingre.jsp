@@ -8,7 +8,7 @@
 
 <head>
 <title>사용자 맞춤형 식품 공유 플랫폼, 베베맘마</title>
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="./ingre.css" rel="stylesheet" type="text/css">

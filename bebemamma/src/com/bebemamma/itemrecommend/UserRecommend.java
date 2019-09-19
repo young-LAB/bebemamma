@@ -25,22 +25,20 @@ import org.apache.mahout.common.iterator.FileLineIterable;
 public class UserRecommend {
 	/* 추후 함수형으로 바꿀 것임 */
 	DataModel model = null;
-    //String filepath ="";
+    String filePath = UserRecommend.class.getResource(".").getPath().toString() + "item.csv";
     
 	public UserRecommend() throws Exception {
 		
 	}
 	
 	public HashMap reco_item(int id) throws Exception {
-		//Path currentPath = Paths.get("");
-		//String filePath = currentPath.toAbsolutePath().toString() + "/item.csv";
-		//String filePath = System.getProperty("user.dir") + "/item.csv";
-		//System.out.println(filePath);
 		HashMap<Integer, Object> list = new HashMap<Integer, Object>();
-		this.model = new FileDataModel(new File("C:/Users/김주완/Desktop/bebemamma/bebemamma/bebemamma/data/item.csv"));
+		//this.model = new FileDataModel(new File("C:/Users/김주완/Desktop/bebemamma/bebemamma/bebemamma/data/item.csv"));
+		this.model = new FileDataModel(new File(filePath));
 		if(!this.checkID(id)) {
 			this.setData(id, 1, 3);
-			this.model = new FileDataModel(new File("f"));
+			//this.model = new FileDataModel(new File("f"));
+			this.model = new FileDataModel(new File(filePath));
 		}
 		
 		
@@ -81,7 +79,8 @@ public class UserRecommend {
 	
 	public int checkID_inItem(int id, int item) throws Exception {
 		int result = -1;
-		File file = new File("C:/Users/김주완/Desktop/bebemamma/bebemamma/bebemamma/data/item.csv");
+		//File file = new File("C:/Users/김주완/Desktop/bebemamma/bebemamma/bebemamma/data/item.csv");
+		File file = new File(filePath);
 		boolean flag = false;
 		for(String line : new FileLineIterable(file)) {
 			String[] column = line.split(",");
@@ -95,7 +94,8 @@ public class UserRecommend {
 	}
 	
 	public void setData(int id, int item, int favor) throws IOException {
-		File file = new File("C:/Users/김주완/Desktop/bebemamma/bebemamma/bebemamma/data/item.csv");
+		//File file = new File("C:/Users/김주완/Desktop/bebemamma/bebemamma/bebemamma/data/item.csv");
+		File file = new File(filePath);
 		try {
 			FileWriter fw = new FileWriter(file, true);
 			fw.write("\n"+id+","+item+","+favor);

@@ -63,7 +63,7 @@
 
 <link rel="stylesheet" href="../css/custom.css">
 <link rel="stylesheet" href="./star.css">
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
 <style>
       .flaticon-recommended:before { 
